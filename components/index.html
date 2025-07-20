@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fineday&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
@@ -22,8 +23,8 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-white shadow-sm fixed-top">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="#">
-            <span style="color: purple; font-family: cursive;">Art</span>ory
+            <a class="navbar-brand fw-bold" href="index.html">
+            <span style="color: purple; font-family: cursive;" >Art</span>ory
             </a>
 
             <button
@@ -54,11 +55,13 @@
                 </form>
 
                 <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="#">Buy</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Sell</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="buy.html">Buy</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sell.html">Sell</a></li>
+                    <li class="nav-item"><a class="nav-link" href="aboutus.html">About Us</a></li>
                     <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-user-circle fa-lg"></i></a>
+                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
+                        <i class="fas fa-user-circle fa-lg"></i>
+                    </a>
                     </li>
                 </ul>
             </div>
@@ -73,9 +76,6 @@
             <a href="#" class="text-secondary text-decoration-none">Museums</a>
         </div>
     </div>
-
-    
-
     <!--Slider-->
     <div class="slider">
         <div class="slide-track">
@@ -121,6 +121,10 @@
             <p class="lead">Connecting artists and collectors through culture and creativity.</p>
             <a href="#" class="btn px-4 py-2 mt-3">Explore Now</a>
         </div>
+    </section>
+    <!-- Discount Banner Below Hero -->
+    <section class="hero-banner text-white text-center py-3">
+        <div class="container"></div>
     </section>
     <!-- Main Content -->
 
@@ -266,6 +270,68 @@
                         <a href="https://news-kh.churchofjesuschrist.org/article/10th-international-art-competition-features-cambodian-artist" class="btn" target="_blank">Read More</a>
                     </div>
                     <img src="/image/blog/pheapartblog.jpg" class="card-img-blog" alt="News 2" style="width: 40%; object-fit: cover;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Form Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Login</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <p class="mb-0">Don't have an account? 
+                        <a href="#" class="text-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Sign Up</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Form Register Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerModalLabel">Register</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="emailRegister" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="emailRegister" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="passwordRegister" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="passwordRegister" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Register</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <p class="mb-0">Already have an account? 
+                        <a href="#" class="text-primary" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
+                    </p>
                 </div>
             </div>
         </div>

@@ -3,193 +3,235 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>aboutus</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='about.css') }}">
-    <style>
+    <title>About Artory</title>
+    <meta name="description" content="Learn about Artory, our mission to support Cambodian artists, and meet our dedicated team.">
+    <meta name="keywords" content="Artory, Cambodian artists, hand-drawn art, about us, team">
+    <meta name="author" content="Artory Team">
 
-body {
-    min-height: 100vh;
-    display: grid;
-    place-items: center;
-    padding-top: 60px;
-}
-body {
-    min-height: 100vh;
-    display: grid;
-    place-items: center;
-    padding-top: 60px;
-}
+    <!--Stylesheet-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 
-.slider {
-    height: 250px;
-    margin: auto;
-    margin-top: 20px;
-    position: relative;
-    width: 90%;
-    display: grid;
-    place-items: center;
-    overflow: hidden;
-}
-
-.slide-track {
-    display: flex;
-    width: calc(250px * 10);
-    animation: scroll 8s linear infinite;
-}
-
-.slide-track:hover {
-    animation-play-state: paused;
-}
-
-@keyframes scroll {
-    0% {
-        transform: translateX(0);
+<style>
+    body {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding-top: 60px;
     }
-    100% {
-        transform: translateX(calc(-250px * 5));
+
+    .slider {
+        height: 250px;
+        margin: auto;
+        margin-top: 20px;
+        position: relative;
+        width: 90%;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
     }
-}
-.slide {
-    height: 200px;
-    width: 250px;
-    display: flex;
-    align-items: center;
-    padding: 5px;
-    perspective: 100px;
-}
 
-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 10px;
-    transition: transform 1s;
-}
+    .slide-track {
+        display: flex;
+        width: calc(250px * 10);
+        animation: scroll 8s linear infinite;
+    }
 
-img:hover {
-    transform: translateZ(20px);
-}
+    .slide-track:hover {
+        animation-play-state: paused;
+    }
 
-.slider::before,
-.slider::after {
-    background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
-    content: '';
-    height: 100%;
-    position: absolute;
-    width: 15%;
-    z-index: 2;
-}
+    @keyframes scroll {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(calc(-250px * 5));
+        }
+    }
+    .slide {
+        height: 200px;
+        width: 250px;
+        display: flex;
+        align-items: center;
+        padding: 5px;
+        perspective: 100px;
+    }
 
-.slider::before {
-    left: 0;
-    top: 0;
-}
+    img {
+        width: 100%;
+        height: 350px;
+        object-fit: cover;
+        border-radius: 10px;
+        transition: transform 1s;
+    }
 
-.slider::after {
-    right: 0;
-    top: 0;
-    transform: rotateZ(180deg);
-}
+    img:hover {
+        transform: translateZ(20px);
+    }
 
-/*Navbar styles*/
-.form-control:focus {
-    box-shadow: none;
-}
+    .slider::before,
+    .slider::after {
+        background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+        content: '';
+        height: 100%;
+        position: absolute;
+        width: 15%;
+        z-index: 2;
+    }
 
-.input-group .form-control {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    border-radius: 30px;
-}
+    .slider::before {
+        left: 0;
+        top: 0;
+    }
 
-.navbar-nav .nav-link {
-    font-weight: 500;
-}
-.navbar-nav .nav-link {
-    color: #333;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
+    .slider::after {
+        right: 0;
+        top: 0;
+        transform: rotateZ(180deg);
+    }
 
-.navbar-nav .nav-link:hover {
-    color: #007bff;
-    text-decoration: underline;
-}
+    /*Navbar styles*/
+    .form-control:focus {
+        box-shadow: none;
+    }
 
-.row.mt-4 {
-    padding: 2rem 1rem;
-}
+    .input-group .form-control {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        border-radius: 30px;
+    }
 
-.row.mt-4 h4 {
-    font-weight: 600;
-    margin-bottom: 1rem;
-}
+    .navbar-nav .nav-link {
+        font-weight: 500;
+    }
+    .navbar-nav .nav-link {
+        color: #333;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
 
-.row.mt-4 p {
-    font-size: 1rem;
-    line-height: 1.7;
-    color: #444;
-}
+    .navbar-nav .nav-link:hover {
+        color: #007bff;
+        text-decoration: underline;
+    }
 
-.team-section {
-    background-color: #f9fcff;
-    padding: 3rem 1rem;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.05);
-}
+    .row.mt-4 {
+        padding: 2rem 1rem;
+    }
 
-.team-section h2 {
-    font-weight: 600;
-    color: #6c71fb;
-}
+    .row.mt-4 h4 {
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
 
-.team-member {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+    .row.mt-4 p {
+        font-size: 1rem;
+        line-height: 1.7;
+        color: #444;
+    }
 
-.team-member:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-}
+    .team-section {
+        background-color: #f9fcff;
+        padding: 3rem 1rem;
+        border-radius: 12px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
 
-.team-member img {
-    max-width: 130px;
-    height: 130px;
-    object-fit: cover;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 3px solid #fff;
-}
+    .team-section h2 {
+        font-weight: 600;
+        color: #6c71fb;
+    }
 
-.team-member h5 {
-    margin-top: 0.75rem;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #333;
-}
-
-.team-member p {
-    font-size: 0.9rem;
-    color: #777;
-    margin-bottom: 0;
-}
-
-/* Responsive: Center on small screens */
-@media (max-width: 767.98px) {
     .team-member {
-        margin-bottom: 2rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-}
+
+    .team-member:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .team-member img {
+        max-width: 130px;
+        height: 130px;
+        object-fit: cover;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 3px solid #fff;
+    }
+
+    .team-member h5 {
+        margin-top: 0.75rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .team-member p {
+        font-size: 0.9rem;
+        color: #777;
+        margin-bottom: 0;
+    }
+
+    /* Responsive: Center on small screens */
+    @media (max-width: 767.98px) {
+        .team-member {
+            margin-bottom: 2rem;
+        }
+    }
+    /* Section Containers */
+    section {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2.5rem 2rem;
+    border-radius: 15px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    background: #fff;
+    margin-bottom: 3rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    }
+
+    /* Slightly different backgrounds for alternating sections */
+    section.bg-light {
+    background: #f7f9fc;
+    }
+
+    /* Section Titles */
+    section h2 {
+    font-weight: 700;
+    font-size: 2.2rem;
+    color: #5a4fcf; /* a calm purple */
+    text-align: center;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-family: 'Georgia', serif;
+    }
+
+    /* Paragraph styling */
+    section p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    max-width: 720px;
+    margin: 0 auto 1.2rem auto;
+    text-align: center;
+    color: #444;
+    }
+
 </style>
 
 
 </head>
 <body>
-        <!-- Navbar -->
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-white shadow-sm fixed-top">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="#">
+            <a class="navbar-brand fw-bold" href="index.html">
             <span style="color: purple; font-family: cursive;">Art</span>ory
             </a>
 
@@ -223,7 +265,7 @@ img:hover {
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link" href="#">Buy</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Sell</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="aboutus.html">About Us</a></li>
                     <li class="nav-item">
                     <a class="nav-link" href="#"><i class="fas fa-user-circle fa-lg"></i></a>
                     </li>
@@ -242,28 +284,42 @@ img:hover {
     </div>
     <div class="collapse navbar-collapse" id="navMenu">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item"><a class="nav-link" href="{{ url_for('blog_page') }}">Blog</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{ url_for('about_page') }}">About Us</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{ url_for('contact_page') }}">Contact Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('blog_page') }}">Blog</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('about_page') }}">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('contact_page') }}">Contact Us</a></li>
             </ul>
     </div>
         
     
-     <div class="row mt-4">
-            <div class="col-md-6">
-                <h1 class="text-center">Our Mission</h1>
-                <p class="fs-3 text">At Artory, our mission is to support and empower Cambodian hand-drawing artists by connecting their original artworks with art lovers around the world. We believe in the power of creativity and culture, and we are committed to providing a platform where local talent can thrive. By making it easy to buy and sell hand-drawn art, we aim to preserve traditional skills, celebrate Cambodian identity, and ensure that artists are fairly recognized and rewarded for their work.</p>
-            </div>
-            <div class="col-md-6">
-                <img src="/image/aboutus/Angkor img.jpg" alt="">
-            </div>
-            
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <h1 class="text-center">Our Mission</h1>
+            <p class="fs-5 text">At Artory, our mission is to support and empower Cambodian hand-drawing artists by connecting their original artworks with art lovers around the world. We believe in the power of creativity and culture, and we are committed to providing a platform where local talent can thrive. By making it easy to buy and sell hand-drawn art, we aim to preserve traditional skills, celebrate Cambodian identity, and ensure that artists are fairly recognized and rewarded for their work.</p>
+        </div>
+        <div class="col-md-6">
+            <img src="/image/aboutus/angkorimg.jpg" alt="angkor wat sunrise">
+        </div>
     </div>
+    <section class="founder-message my-5 text-center">
+        <h2>A Word From Our Founder</h2>
+        <blockquote class="fst-italic mx-auto" style="max-width: 600px;">
+            “Artory is more than a platform — it’s a dream to honor Cambodian artists and culture, to connect hearts through art, and to build a future where creativity thrives. We invite you to join us on this journey.”  
+            <br><br>— Artory Team, Founder
+        </blockquote>
+    </section>
+
+    <section class="call-to-action my-5 text-center">
+        <h3>Join Our Community</h3>
+        <p>Whether you’re an artist or art lover, your journey starts here. Explore, support, and share Cambodian creativity with the world.</p>
+        <a href="#" class="btn btn-primary mx-2">Explore Artworks</a>
+        <a href="#" class="btn btn-outline-primary mx-2">Sell Your Art</a>
+        <a href="#" class="btn btn-outline-secondary mx-2">Subscribe to Newsletter</a>
+    </section>
+
                
    <div class="container mt-5 team-section">
         <h2 class="text-center mb-4">Meet Our Team</h2>
         <div class="row justify-content-center">
-
             <!-- Member 1 -->
             <div class="col-md-2 col-sm-6 text-center team-member mx-3 mb-4">
                 <img src="/image/aboutus/Nich.jpg" class="img-fluid rounded-circle shadow-sm mb-2" alt="Member 1">
@@ -286,7 +342,7 @@ img:hover {
             </div>
 
 
-<!-- Member 4 -->
+            <!-- Member 4 -->
             <div class="col-md-2 col-sm-6 text-center team-member mx-3 mb-4">
                 <img src="/image/aboutus/Mary.jpg" class="img-fluid rounded-circle shadow-sm mb-2" alt="Member 4">
                 <h5 class="mt-2">Loeung Chhumsomary</h5>
@@ -299,8 +355,7 @@ img:hover {
                 <h5 class="mt-2">Roem Hanny</h5>
                 <p class="small">Frontend Developer</p>
             </div>
-
-     </div>
-</div>...
+        </div>
+    </div>...
 </body>
 </html>
