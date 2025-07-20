@@ -4,7 +4,15 @@ body {
     place-items: center;
     padding-top: 60px;
 }
-
+/* hero banner */
+.hero-banner {
+    width: 100%;
+    background: linear-gradient(135deg, #582e6c, #b49eff);
+    padding: 40px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
 .slider {
     height: 350px;
     margin: auto;
