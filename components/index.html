@@ -76,9 +76,9 @@
             <li class="nav-item"><a class="nav-link" href="#">Sell</a></li>
             <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
             <li class="nav-item">
-              <a class="nav-link" href="#"
-                ><i class="fas fa-user-circle fa-lg"></i
-              ></a>
+              <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
+                  <i class="fas fa-user-circle fa-lg"></i>
+              </a>
             </li>
           </ul>
         </div>
@@ -436,6 +436,68 @@
         </div>
       </div>
     </main>
+    <!-- Form Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Login</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <p class="mb-0">Don't have an account? 
+                        <a href="#" class="text-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Sign Up</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Form Register Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerModalLabel">Register</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="emailRegister" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="emailRegister" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="passwordRegister" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="passwordRegister" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Register</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <p class="mb-0">Already have an account? 
+                        <a href="#" class="text-primary" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Footer -->
     <footer class="mt-5 pt-5 pb-3 w-100">
       <div class="container">
