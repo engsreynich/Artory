@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Form & Products</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+      body {
+        background-color: #f8f9fa;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+      .form-container, .products-container {
+        background: white;
+        border-radius: 10px;
+        padding: 40px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        max-width: 800px;
+        margin: 50px auto;
+      }
+      .products-container { display: none; }
+      .form-label { font-weight: 600; color: #333; margin-bottom: 8px; }
+      .form-control, .form-select {
+        border: 2px solid #e9ecef;
+        border-radius: 8px;
+        padding: 12px 16px;
+        font-size: 16px;
+        transition: border-color 0.3s ease;
+      }
+      .form-control:focus, .form-select:focus {
+        border-color: #0d6efd;
+        box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+      }
+      .btn-submit {
+        background-color: #343a40;
+        border: none;
+        border-radius: 8px;
+        padding: 12px 24px;
+        font-size: 16px;
+        font-weight: 600;
+        color: white;
+        width: 100%;
+        transition: background-color 0.3s ease;
+      }
+      .btn-submit:hover { background-color: #495057; }
+      .btn-submit:disabled { background-color: #6c757d; cursor: not-allowed; }
+      .form-group { margin-bottom: 24px; }
+      .success-message, .error-message {
+        padding: 12px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        display: none;
+      }
+      .success-message {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+      }
+      .error-message {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+      }
+      .art-upload-area {
+        border: 2px dashed #e9ecef;
+        border-radius: 8px;
+        padding: 40px;
+        text-align: center;
+        background-color: #f8f9fa;
+        cursor: pointer;
+        transition: border-color 0.3s ease;
+      }
+      .art-upload-area:hover, .art-upload-area.dragover {
+        border-color: #0d6efd;
+        background-color: #e7f3ff;
+      }
+      .upload-icon {
+        font-size: 48px;
+        color: #6c757d;
+        margin-bottom: 16px;
+      }
+      .upload-text {
+        color: #6c757d;
+        font-size: 16px;
+      }
+      .file-info {
+        background-color: #e7f3ff;
+        border: 1px solid #0d6efd;
+        border-radius: 8px;
+        padding: 12px;
+        margin-top: 12px;
+        display: none;
+      }
+      .file-name { font-weight: 600; color: #0d6efd; }
+      
+      /* Enhanced submission summary styles */
+      .submission-summary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border-radius: 15px;
+        padding: 30px;
+        margin-top: 30px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        animation: slideIn 0.5s ease-out;
+      }
+      
+      .submission-summary h3 {
+        color: white;
+        text-align: center;
+        margin-bottom: 25px;
+        font-weight: bold;
+        font-size: 28px;
+      }
+      
+      .detail-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 15px;
+        transition: transform 0.2s ease;
+      }
+      
+      .detail-card:hover {
+        transform: translateY(-2px);
+      }
+      
+      .detail-label {
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        opacity: 0.8;
+        margin-bottom: 5px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      
+      .detail-value {
+        font-size: 18px;
+        font-weight: 500;
+      }
+      
+      .price-highlight {
+        font-size: 24px;
+        font-weight: bold;
+        color: #ffd700;
+      }
+      
+      .file-details {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 10px;
+        border-radius: 8px;
+        margin-top: 8px;
+      }
+      
+      .file-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      
+      .file-item:last-child {
+        border-bottom: none;
+      }
+      
+      .file-size {
+        font-size: 14px;
+        opacity: 0.7;
+      }
+      
+      .image-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 15px;
+        margin-top: 15px;
+      }
+      
+      .image-preview {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+        padding: 10px;
+        text-align: center;
+      }
+      
+      .image-preview img {
+        width: 100%;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        transition: transform 0.3s ease;
+      }
+      
+      .image-preview img:hover {
+        transform: scale(1.05);
+        cursor: pointer;
+      }
+      
+      .image-name {
+        font-size: 12px;
+        margin-top: 8px;
+        opacity: 0.8;
+        word-break: break-word;
+      }
+      
+      .file-icon {
+        font-size: 48px;
+        margin-bottom: 10px;
+      }
+      
+      .non-image-file {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 120px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+      }
+      
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+      }
+      
+      .modal-content {
+        display: block;
+        margin: auto;
+        max-width: 90%;
+        max-height: 90%;
+        margin-top: 2%;
+      }
+      
+      .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      
+      .close:hover {
+        color: #fff;
+      }
+      
+      .summary-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+        margin-top: 25px;
+        padding-top: 25px;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      
+      .stat-item {
+        text-align: center;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 15px;
+        border-radius: 10px;
+      }
+      
+      .stat-number {
+        font-size: 24px;
+        font-weight: bold;
+        color: #ffd700;
+      }
+      
+      .stat-label {
+        font-size: 12px;
+        opacity: 0.8;
+        margin-top: 5px;
+      }
+      
+      .submission-id {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        text-align: center;
+        border: 2px dashed rgba(255, 255, 255, 0.3);
+      }
+      
+      .id-label {
+        font-size: 14px;
+        opacity: 0.8;
+        margin-bottom: 5px;
+      }
+      
+      .id-number {
+        font-size: 20px;
+        font-weight: bold;
+        color: #ffd700;
+        font-family: monospace;
+      }
+      
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      .new-submission-btn {
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        border-radius: 8px;
+        padding: 12px 25px;
+        margin-top: 20px;
+        transition: all 0.3s ease;
+        font-weight: 600;
+      }
+      
+      .new-submission-btn:hover {
+        background: rgba(255, 255, 255, 0.3);
+        color: white;
+        transform: translateY(-2px);
+      }
+      
+      .progress-bar {
+        background: rgba(255, 255, 255, 0.2);
+        height: 6px;
+        border-radius: 3px;
+        overflow: hidden;
+        margin: 20px 0;
+      }
+      
+      .progress-fill {
+        background: #ffd700;
+        height: 100%;
+        width: 0%;
+        transition: width 2s ease;
+      }
+      
+      .status-badge {
+        display: inline-block;
+        background: #28a745;
+        color: white;
+        padding: 5px 12px;
+        border-radius: 15px;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container" id="contactSection">
+      <div class="form-container">
+        <h2 class="text-center mb-4">Contact Us</h2>
+
+        <div class="success-message" id="successMessage">
+          Form submitted successfully! We'll get back to you soon.
+        </div>
+
+        <div class="error-message" id="errorMessage">
+          Please fill in all required fields.
+        </div>
+
+        <form id="contactForm" novalidate>
+          <div class="form-group">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Jane Smith" required />
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="jane@framer.com" required />
+          </div>
+
+          <div class="form-group">
+            <label for="phone" class="form-label">Phone Number</label>
+            <input type="tel" class="form-control" id="phone" placeholder="0123 456 789" />
+          </div>
+
+          <div class="form-group">
+            <label for="art" class="form-label">Your Art</label>
+            <div class="art-upload-area" id="artUpload">
+              <div class="upload-icon">📁</div>
+              <div class="upload-text">Click to upload or drag and drop your art files</div>
+            </div>
+            <input type="file" id="artFile" accept="image/*,.pdf,.doc,.docx" multiple style="display: none" />
+            <div class="file-info" id="fileInfo">
+              <div class="file-name" id="fileName"></div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="price" class="form-label">Estimated Price ($)</label>
+            <input type="number" class="form-control" id="price" placeholder="Enter your expected price" min="0" step="0.01" required />
+          </div>
+
+          <div class="form-group">
+            <label for="location" class="form-label">Location</label>
+            <select class="form-select" id="location" required>
+              <option value="">Select...</option>
+              <option value="Siem Reap">Siem Reap</option>
+              <option value="Kampong Cham">Kampong Cham</option>
+              <option value="Battambang">Battambang</option>
+              <option value="Banteay Meanchey">Banteay Meanchey</option>
+              <option value="Ratanakiri">Ratanakiri</option>
+              <option value="Takeo">Takeo</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="category" class="form-label">Art Category</label>
+            <select class="form-select" id="category">
+              <option value="">Select category (optional)...</option>
+              <option value="Painting">Painting</option>
+              <option value="Digital Art">Digital Art</option>
+              <option value="Photography">Photography</option>
+              <option value="Sculpture">Sculpture</option>
+              <option value="Graphic Design">Graphic Design</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" rows="3" placeholder="Describe your art or project..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-submit">Submit</button>
+        </form>
+
+        <!-- Enhanced Submission Summary -->
+        <div id="submissionSummary" class="submission-summary" style="display: none;">
+          <div class="submission-id">
+            <div class="id-label">Submission Reference ID</div>
+            <div class="id-number" id="submissionId"></div>
+          </div>
+          
+          <h3>✅ Submission Completed Successfully!</h3>
+          
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          
+          <div class="text-center mb-3">
+            <span class="status-badge">Received & Processing</span>
+          </div>
+          
+          <div class="row">
+            <div class="col-md-6">
+              <div class="detail-card">
+                <div class="detail-label">👤 Applicant Name</div>
+                <div class="detail-value" id="summaryName"></div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="detail-card">
+                <div class="detail-label">📧 Contact Email</div>
+                <div class="detail-value" id="summaryEmail"></div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-md-6">
+              <div class="detail-card">
+                <div class="detail-label">📱 Phone Number</div>
+                <div class="detail-value" id="summaryPhone"></div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="detail-card">
+                <div class="detail-label">📍 Location</div>
+                <div class="detail-value" id="summaryLocation"></div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-md-6">
+              <div class="detail-card">
+                <div class="detail-label">🎨 Art Category</div>
+                <div class="detail-value" id="summaryCategory"></div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="detail-card">
+                <div class="detail-label">💰 Estimated Value</div>
+                <div class="detail-value price-highlight">$<span id="summaryPrice"></span></div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="detail-card">
+            <div class="detail-label">📝 Project Description</div>
+            <div class="detail-value" id="summaryDescription"></div>
+          </div>
+          
+          <div class="detail-card">
+            <div class="detail-label">📎 Attached Files</div>
+            <div class="detail-value">
+              <div id="summaryFiles"></div>
+              <div class="image-gallery" id="imageGallery"></div>
+              <div class="file-details" id="fileDetails"></div>
+            </div>
+          </div>
+          
+          <div class="detail-card">
+            <div class="detail-label">📅 Submission Details</div>
+            <div class="detail-value">
+              <div><strong>Submitted:</strong> <span id="submissionTime"></span></div>
+              <div><strong>Processing Time:</strong> <span id="processingTime">1.5 seconds</span></div>
+              <div><strong>Status:</strong> <span style="color: #90EE90;">Successfully Received</span></div>
+            </div>
+          </div>
+          
+          <div class="summary-stats">
+            <div class="stat-item">
+              <div class="stat-number" id="totalFiles">0</div>
+              <div class="stat-label">Files Uploaded</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number" id="totalSize">0 KB</div>
+              <div class="stat-label">Total Size</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number" id="fieldsCompleted">0/8</div>
+              <div class="stat-label">Fields Completed</div>
+            </div>
+          </div>
+          
+          <div class="text-center">
+            <button class="btn new-submission-btn" onclick="resetForm()">
+              ✨ Submit Another Request
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img class="modal-content" id="modalImage">
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("contactForm");
+        const artUpload = document.getElementById("artUpload");
+        const artFile = document.getElementById("artFile");
+        const fileInfo = document.getElementById("fileInfo");
+        const fileName = document.getElementById("fileName");
+        const successMessage = document.getElementById("successMessage");
+        const errorMessage = document.getElementById("errorMessage");
+        let uploadedFiles = [];
+
+        // File upload handling
+        artUpload.addEventListener("click", () => artFile.click());
+        artFile.addEventListener("change", updateFileNames);
+
+        function updateFileNames() {
+          const files = artFile.files;
+          uploadedFiles = Array.from(files);
+          if (files.length > 0) {
+            let names = [];
+            for (let i = 0; i < files.length; i++) names.push(files[i].name);
+            fileName.textContent = names.join(", ");
+            fileInfo.style.display = "block";
+            
+            // Create preview for images
+            previewFiles(files);
+          }
+        }
+
+        function previewFiles(files) {
+          // Clear previous previews
+          const existingPreviews = document.querySelectorAll('.file-preview');
+          existingPreviews.forEach(preview => preview.remove());
+          
+          Array.from(files).forEach((file, index) => {
+            if (file.type.startsWith('image/')) {
+              const reader = new FileReader();
+              reader.onload = function(e) {
+                const preview = document.createElement('div');
+                preview.className = 'file-preview';
+                preview.innerHTML = `
+                  <img src="${e.target.result}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px; margin: 5px;" onclick="openModal('${e.target.result}')">
+                `;
+                fileInfo.appendChild(preview);
+              }
+              reader.readAsDataURL(file);
+            }
+          });
+        }
+
+        function formatFileSize(bytes) {
+          if (bytes === 0) return '0 Bytes';
+          const k = 1024;
+          const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+          const i = Math.floor(Math.log(bytes) / Math.log(k));
+          return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        function generateSubmissionId() {
+          const timestamp = Date.now();
+          const random = Math.floor(Math.random() * 1000);
+          return `SUB-${timestamp}-${random}`;
+        }
+
+        // Drag and drop
+        artUpload.addEventListener("dragover", e => {
+          e.preventDefault();
+          artUpload.classList.add("dragover");
+        });
+        artUpload.addEventListener("dragleave", e => {
+          e.preventDefault();
+          artUpload.classList.remove("dragover");
+        });
+        artUpload.addEventListener("drop", e => {
+          e.preventDefault();
+          artUpload.classList.remove("dragover");
+          artFile.files = e.dataTransfer.files;
+          updateFileNames();
+        });
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          successMessage.style.display = "none";
+          errorMessage.style.display = "none";
+
+          const name = document.getElementById("name").value.trim();
+          const email = document.getElementById("email").value.trim();
+          const phone = document.getElementById("phone").value.trim();
+          const location = document.getElementById("location").value;
+          const price = document.getElementById("price").value.trim();
+          const category = document.getElementById("category").value;
+          const description = document.getElementById("description").value.trim();
+
+          if (!name || !email || !location || !price) {
+            errorMessage.textContent = "Please fill in all required fields.";
+            errorMessage.style.display = "block";
+            return;
+          }
+
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(email)) {
+            errorMessage.textContent = "Please enter a valid email address.";
+            errorMessage.style.display = "block";
+            return;
+          }
+
+          const submitBtn = document.querySelector(".btn-submit");
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Processing Submission...";
+
+          setTimeout(function () {
+            // Hide the form and show success message
+            form.style.display = "none";
+            successMessage.style.display = "block";
+
+            // Generate submission ID
+            const submissionId = generateSubmissionId();
+            document.getElementById("submissionId").textContent = submissionId;
+
+            // Populate the detailed summary
+            document.getElementById("summaryName").textContent = name;
+            document.getElementById("summaryEmail").textContent = email;
+            document.getElementById("summaryPhone").textContent = phone || "Not provided";
+            document.getElementById("summaryLocation").textContent = location;
+            document.getElementById("summaryPrice").textContent = parseFloat(price).toFixed(2);
+            document.getElementById("summaryCategory").textContent = category || "Not specified";
+            document.getElementById("summaryDescription").textContent = description || "No description provided";
+            
+            // File details and image gallery
+            const fileDetailsDiv = document.getElementById("fileDetails");
+            const summaryFilesDiv = document.getElementById("summaryFiles");
+            const imageGallery = document.getElementById("imageGallery");
+            
+            if (uploadedFiles.length > 0) {
+              summaryFilesDiv.textContent = `${uploadedFiles.length} file(s) uploaded`;
+              let totalSize = 0;
+              let fileDetailsHTML = '';
+              let imageGalleryHTML = '';
+              
+              uploadedFiles.forEach((file, index) => {
+                totalSize += file.size;
+                
+                // Create file list item
+                const fileIcon = getFileIcon(file.type);
+                fileDetailsHTML += `
+                  <div class="file-item">
+                    <span>${fileIcon} ${file.name}</span>
+                    <span class="file-size">${formatFileSize(file.size)}</span>
+                  </div>
+                `;
+                
+                // Create image preview or file icon
+                if (file.type.startsWith('image/')) {
+                  const reader = new FileReader();
+                  reader.onload = function(e) {
+                    const imagePreview = document.createElement('div');
+                    imagePreview.className = 'image-preview';
+                    imagePreview.innerHTML = `
+                      <img src="${e.target.result}" alt="${file.name}" onclick="openModal('${e.target.result}')">
+                      <div class="image-name">${file.name}</div>
+                    `;
+                    imageGallery.appendChild(imagePreview);
+                  }
+                  reader.readAsDataURL(file);
+                } else {
+                  // For non-image files, show an icon
+                  const filePreview = document.createElement('div');
+                  filePreview.className = 'image-preview';
+                  filePreview.innerHTML = `
+                    <div class="non-image-file">
+                      <div class="file-icon">${getFileIcon(file.type)}</div>
+                      <div style="font-size: 12px; opacity: 0.8;">${getFileType(file.type)}</div>
+                    </div>
+                    <div class="image-name">${file.name}</div>
+                  `;
+                  imageGallery.appendChild(filePreview);
+                }
+              });
+              
+              fileDetailsDiv.innerHTML = fileDetailsHTML;
+              fileDetailsDiv.style.display = 'block';
+              document.getElementById("totalSize").textContent = formatFileSize(totalSize);
+            } else {
+              summaryFilesDiv.textContent = "No files uploaded";
+              fileDetailsDiv.style.display = 'none';
+              imageGallery.innerHTML = '';
+              document.getElementById("totalSize").textContent = "0 KB";
+            }
+
+            // Stats
+            document.getElementById("totalFiles").textContent = uploadedFiles.length;
+            
+            // Count completed fields
+            const fieldsCompleted = [name, email, location, price].filter(field => field && field.length > 0).length + 
+                                  (phone ? 1 : 0) + (category ? 1 : 0) + (description ? 1 : 0) + (uploadedFiles.length > 0 ? 1 : 0);
+            document.getElementById("fieldsCompleted").textContent = `${fieldsCompleted}/8`;
+
+            document.getElementById("submissionTime").textContent = new Date().toLocaleString();
+            document.getElementById("submissionSummary").style.display = "block";
+
+            // Animate progress bar
+            setTimeout(() => {
+              document.getElementById("progressFill").style.width = "100%";
+            }, 100);
+
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Submit";
+            
+            // Scroll to summary
+            document.getElementById("submissionSummary").scrollIntoView({ behavior: 'smooth' });
+          }, 1500);
+        });
+      });
+
+      // Helper functions for file handling
+      function getFileIcon(fileType) {
+        if (fileType.startsWith('image/')) return '🖼️';
+        if (fileType.includes('pdf')) return '📄';
+        if (fileType.includes('doc')) return '📝';
+        if (fileType.includes('excel') || fileType.includes('sheet')) return '📊';
+        return '📎';
+      }
+
+      function getFileType(fileType) {
+        if (fileType.startsWith('image/')) return 'Image';
+        if (fileType.includes('pdf')) return 'PDF';
+        if (fileType.includes('doc')) return 'Document';
+        if (fileType.includes('excel') || fileType.includes('sheet')) return 'Spreadsheet';
+        return 'File';
+      }
+
+      // Modal functions
+      function openModal(imageSrc) {
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        modal.style.display = 'block';
+        modalImg.src = imageSrc;
+      }
+
+      function closeModal() {
+        document.getElementById('imageModal').style.display = 'none';
+      }
+
+      // Close modal when clicking outside the image
+      window.onclick = function(event) {
+        const modal = document.getElementById('imageModal');
+        if (event.target == modal) {
+          modal.style.display = 'none';
+        }
+      }
+
+      // Function to reset form for new submission
+      function resetForm() {
+        document.getElementById("contactForm").reset();
+        document.getElementById("contactForm").style.display = "block";
+        document.getElementById("submissionSummary").style.display = "none";
+        document.getElementById("successMessage").style.display = "none";
+        document.getElementById("fileInfo").style.display = "none";
+        document.getElementById("progressFill").style.width = "0%";
+        document.getElementById("imageGallery").innerHTML = "";
+        document.querySelector('h2').scrollIntoView({ behavior: 'smooth' });
+      }
+    </script>
+  </body>
+</html>
