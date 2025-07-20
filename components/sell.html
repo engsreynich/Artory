@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .form-container {
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 50px auto;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .form-control, .form-select {
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+        }
+        
+        .btn-submit {
+            background-color: #343a40;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn-submit:hover {
+            background-color: #495057;
+        }
+        
+        .btn-submit:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
+        
+        .form-group {
+            margin-bottom: 24px;
+        }
+        
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #c3e6cb;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .error-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #f5c6cb;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .art-upload-area {
+            border: 2px dashed #e9ecef;
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            background-color: #f8f9fa;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+        
+        .art-upload-area:hover {
+            border-color: #0d6efd;
+            background-color: #e7f3ff;
+        }
+        
+        .art-upload-area.dragover {
+            border-color: #0d6efd;
+            background-color: #e7f3ff;
+        }
+        
+        .upload-icon {
+            font-size: 48px;
+            color: #6c757d;
+            margin-bottom: 16px;
+        }
+        
+        .upload-text {
+            color: #6c757d;
+            font-size: 16px;
+        }
+        
+        .file-info {
+            background-color: #e7f3ff;
+            border: 1px solid #0d6efd;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 12px;
+            display: none;
+        }
+        
+        .file-name {
+            font-weight: 600;
+            color: #0d6efd;
+        }
+    </style>
+</head>
+<body>
+    <img src="../Angkor img.jpg" alt="">
+                
+                <div class="form-group">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Artory@gmail.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone" class="form-label">Phone Number</label>
+                    <input type="tel" class="form-control" id="phone" placeholder="012 112 223">
+                </div>
+                
+                <div class="form-group">
+                    <label for="art" class="form-label">Your Art</label>
+                    <div class="art-upload-area" id="artUpload">
+                        <div class="upload-icon">📁</div>
+                        <div class="upload-text">
+                            Click to upload or drag and drop your art files
+                        </div>
+                    </div>
+                    <input type="file" id="artFile" accept="image/*,.pdf,.doc,.docx" multiple style="display: none;">
+                    <div class="file-info" id="fileInfo">
+                        <div class="file-name" id="fileName"></div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="location" class="form-label">Location</label>
+                    <select class="form-select" id="location" required>
+                        <option value="">Select...</option>
+                        <option value="Phnom Penh">Phnom Penh</option>
+                        <option value="Siem Reip">Siem Riep Province</option>
+                        <option value="Battambang">Battambang Province</option>
+                        <option value="tokyo">Kandal Province</option>
+                        <option value="berlin">Oddar Meanchey Province</option>
+                        <option value="sydney">Kompongcham Province</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn btn-submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('contactForm');
+            const artUpload = document.getElementById('artUpload');
+            const artFile = document.getElementById('artFile');
+            const fileInfo = document.getElementById('fileInfo');
+            const fileName = document.getElementById('fileName');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // File upload functionality
+            artUpload.addEventListener('click', function() {
+                artFile.click();
+            });
+            
+            artFile.addEventListener('change', function(e) {
+                const files = e.target.files;
+                if (files.length > 0) {
+                    let fileNames = [];
+                    for (let i = 0; i < files.length; i++) {
+                        fileNames.push(files[i].name);
+                    }
+                    fileName.textContent = fileNames.join(', ');
+                    fileInfo.style.display = 'block';
+                }
+            });
+            
+            // Drag and drop functionality
+            artUpload.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                artUpload.classList.add('dragover');
+            });
+            
+            artUpload.addEventListener('dragleave', function(e) {
+                e.preventDefault();
+                artUpload.classList.remove('dragover');
+            });
+            
+            artUpload.addEventListener('drop', function(e) {
+                e.preventDefault();
+                artUpload.classList.remove('dragover');
+                
+                const files = e.dataTransfer.files;
+                if (files.length > 0) {
+                    artFile.files = files;
+                    let fileNames = [];
+                    for (let i = 0; i < files.length; i++) {
+                        fileNames.push(files[i].name);
+                    }
+                    fileName.textContent = fileNames.join(', ');
+                    fileInfo.style.display = 'block';
+                }
+            });
+            
+            // Form submission
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Hide previous messages
+                successMessage.style.display = 'none';
+                errorMessage.style.display = 'none';
+                
+                // Get form values
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                const location = document.getElementById('location').value;
+                
+                // Basic validation
+                if (!name  !email  !location) {
+                    errorMessage.style.display = 'block';
+                    return;
+                }
+                
+                // Email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    errorMessage.textContent = 'Please enter a valid email address.';
+                    errorMessage.style.display = 'block';
+                    return;
+                }
+                
+                // Simulate form submission
+                const submitBtn = document.querySelector('.btn-submit');
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Submitting...';
+                
+                setTimeout(function() {
+                    // Reset form
+                    form.reset();
+                    fileInfo.style.display = 'none';
+                    
+                    // Show success message
+
+
+successMessage.style.display = 'block';
+                    
+                    // Reset button
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit';
+                    
+                    // Scroll to top to show success message
+                    document.querySelector('.form-container').scrollIntoView({ behavior: 'smooth' });
+                }, 1500);
+            });
+            
+            // Add input validation styling
+            const inputs = document.querySelectorAll('.form-control, .form-select');
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    if (this.hasAttribute('required') && !this.value.trim()) {
+                        this.classList.add('is-invalid');
+                    } else {
+                        this.classList.remove('is-invalid');
+                    }
+                });
+                
+                input.addEventListener('input', function() {
+                    this.classList.remove('is-invalid');
+                });
+            });
+        });
+    </script>...
+</html>
