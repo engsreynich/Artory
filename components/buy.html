@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Artwork Gallery</title>
+        <!--Stylesheet-->
+    
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <!-- ----------- -->
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
       rel="stylesheet"
@@ -270,300 +274,482 @@
           font-size: 1.5rem;
         }
       }
+      /* Footer */
+footer {
+    background-color: #111; /* Dark background for contrast */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+footer h5 {
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+footer p {
+    margin: 0 0 0.5rem;
+}
+
+footer a {
+    color: #eeeded;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: #f39c12; /* Accent color on hover */
+}
+
+footer .border-light {
+    border-color: rgba(255, 255, 255, 0.1);
+    margin: 2rem 0;
+}
+
+footer .fab {
+    font-size: 1.2rem;
+    transition: transform 0.3s, color 0.3s;
+}
+
+footer .fab:hover {
+    transform: scale(1.2);
+    color: #f39c12;
+}
+
+footer .text-center p {
+    color: #d6d3d3;
+    font-size: 14px;
+}
+
     </style>
   </head>
   <body>
-    <div class="container py-5">
-      <h1 class="section-title">Artwork Gallery</h1>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm fixed-top">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#">
+          <span style="color: purple; font-family: cursive">Art</span>ory
+        </a>
 
-      <div class="row g-4" id="artwork-gallery">
-        <!-- Cards will be generated here -->
-      </div>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMenu"
+          aria-controls="navMenu"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-      <!-- Detail View Modal -->
-      <div
-        class="modal fade"
-        id="detailModal"
-        tabindex="-1"
-        aria-labelledby="detailModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-xl">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="detailModalLabel">Artwork Details</h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
+        <div class="collapse navbar-collapse" id="navMenu">
+          <form class="d-flex ms-lg-4 me-auto my-2 my-lg-0 w-50">
+            <div class="input-group w-100">
+              <span class="input-group-text bg-light border-0">
+                <i class="fas fa-search"></i>
+              </span>
+              <input
+                class="form-control border-0 bg-light"
+                type="search"
+                placeholder="Search..."
+                aria-label="Search"
+              />
             </div>
-            <div class="modal-body">
-              <div class="row">
-                <div class="col-md-6">
-                  <img
-                    id="detailImage"
-                    src=""
-                    class="detail-image"
-                    alt="Artwork Detail"
-                    onclick="showFullscreen(this.src)"
-                  />
-                  <div class="text-center mt-2">
-                    <small class="text-muted">
-                      <i class="fas fa-search-plus me-1"></i>
-                      Click image to view fullscreen
-                    </small>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="detail-info">
-                    <h2 id="detailTitle" class="detail-title"></h2>
-                    <p id="detailArtist" class="detail-artist"></p>
-                    <div id="detailPrice" class="detail-price"></div>
-                    <p id="detailDescription" class="detail-description"></p>
-                    
-                    <div class="detail-specs">
-                      <h6 class="mb-3"><i class="fas fa-info-circle me-2"></i>Artwork Specifications</h6>
-                      <div class="spec-item">
-                        <span class="spec-label">Style:</span>
-                        <span class="spec-value" id="detailStyle">Traditional Khmer</span>
-                      </div>
-                      <div class="spec-item">
-                        <span class="spec-label">Medium:</span>
-                        <span class="spec-value" id="detailMedium">Digital Art Print</span>
-                      </div>
-                      <div class="spec-item">
-                        <span class="spec-label">Dimensions:</span>
-                        <span class="spec-value" id="detailDimensions">24" × 32"</span>
-                      </div>
-                      <div class="spec-item">
-                        <span class="spec-label">Year:</span>
-                        <span class="spec-value" id="detailYear">2024</span>
-                      </div>
-                      <div class="spec-item">
-                        <span class="spec-label">Edition:</span>
-                        <span class="spec-value" id="detailEdition">Limited Edition</span>
-                      </div>
-                      <div class="spec-item">
-                        <span class="spec-label">Availability:</span>
-                        <span class="spec-value" id="detailAvailability">In Stock</span>
-                      </div>
-                    </div>
+          </form>
 
-                    <div class="d-flex gap-3">
-                      <button 
-                        class="btn btn-primary flex-fill" 
-                        id="detailBuyBtn"
-                        onclick="buyFromDetail()"
-                      >
-                        <i class="fas fa-shopping-cart me-2"></i>Buy Now
-                      </button>
-                      <button 
-                        class="btn btn-outline-secondary" 
-                        id="detailLikeBtn"
-                        onclick="toggleDetailLike()"
-                      >
-                        <i class="far fa-heart"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <ul class="navbar-nav mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="#">Buy</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Sell</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"
+                ><i class="fas fa-user-circle fa-lg"></i
+              ></a>
+            </li>
+          </ul>
         </div>
       </div>
-
-      <!-- Purchase Modal -->
-      <div
-        class="modal fade"
-        id="buyModal"
-        tabindex="-1"
-        aria-labelledby="buyModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="buyModalLabel">Purchase Artwork</h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <div class="row">
-                <div class="col-md-5">
-                  <img
-                    id="artworkImage"
-                    src=""
-                    class="img-fluid rounded"
-                    alt="Artwork"
-                  />
-                </div>
-                <div class="col-md-7">
-                  <form id="purchaseForm">
-                    <div class="mb-3">
-                      <label class="form-label"
-                        ><strong>Artwork Details</strong></label
-                      >
-                      <input
-                        type="text"
-                        id="artworkTitle"
-                        class="form-control"
-                        readonly
-                      />
-                      <input
-                        type="text"
-                        id="artworkArtist"
-                        class="form-control mt-2"
-                        readonly
-                      />
-                      <input
-                        type="text"
-                        id="artworkPrice"
-                        class="form-control mt-2"
-                        readonly
-                      />
-                    </div>
-
-                    <hr />
-
-                    <div class="mb-3">
-                      <label for="customerName" class="form-label"
-                        >Full Name *</label
-                      >
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="customerName"
-                        name="customerName"
-                        required
-                      />
-                    </div>
-
-                    <div class="mb-3">
-                      <label for="email" class="form-label"
-                        >Email Address *</label
-                      >
-                      <input
-                        type="email"
-                        class="form-control"
-                        id="email"
-                        name="email"
-                        required
-                      />
-                    </div>
-
-                    <div class="mb-3">
-                      <label for="phone" class="form-label"
-                        >Phone Number *</label
-                      >
-                      <input
-                        type="tel"
-                        class="form-control"
-                        id="phone"
-                        name="phone"
-                        required
-                      />
-                    </div>
-
-                    <div class="mb-3">
-                      <label for="address" class="form-label"
-                        >Shipping Address</label
-                      >
-                      <textarea
-                        class="form-control"
-                        id="address"
-                        name="address"
-                        rows="3"
-                        placeholder="Enter your full shipping address"
-                      ></textarea>
-                    </div>
-
-                    <div class="mb-3">
-                      <label for="paymentMethod" class="form-label"
-                        >Payment Method</label
-                      >
-                      <select
-                        class="form-select"
-                        id="paymentMethod"
-                        name="paymentMethod"
-                      >
-                        <option value="credit-card">Credit Card</option>
-                        <option value="debit-card">Debit Card</option>
-                        <option value="paypal">PayPal</option>
-                        <option value="bank-transfer">Bank Transfer</option>
-                      </select>
-                    </div>
-
-                    <div class="mb-3">
-                      <label for="specialInstructions" class="form-label"
-                        >Special Instructions</label
-                      >
-                      <textarea
-                        class="form-control"
-                        id="specialInstructions"
-                        name="specialInstructions"
-                        rows="2"
-                        placeholder="Any special delivery or handling instructions"
-                      ></textarea>
-                    </div>
-
-                    <div class="form-check mb-3">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="agreeTerms"
-                        required
-                      />
-                      <label class="form-check-label" for="agreeTerms">
-                        I agree to the terms and conditions *
-                      </label>
-                    </div>
-
-                    <div class="form-check mb-3">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="newsletter"
-                      />
-                      <label class="form-check-label" for="newsletter">
-                        Subscribe to our newsletter for updates on new artwork
-                      </label>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Cancel
-              </button>
-              <button
-                type="button"
-                class="btn btn-primary"
-                onclick="submitPurchase()"
-              >
-                <i class="fas fa-credit-card me-1"></i>Complete Purchase
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Fullscreen Image Overlay -->
-      <div id="fullscreenOverlay" class="fullscreen-overlay" onclick="hideFullscreen()">
-        <img id="fullscreenImage" class="fullscreen-image" src="" alt="Fullscreen Artwork">
+    </nav>
+    <!-- Sub Navigation -->
+    <div
+      class="bg-white border-top border-bottom py-2 mt-5 shadow-sm fixed-top w-100"
+    >
+      <div class="container d-flex gap-4">
+        <a href="#" class="text-secondary text-decoration-none">Artist</a>
+        <a href="#" class="text-secondary text-decoration-none">Artwork</a>
+        <a href="#" class="text-secondary text-decoration-none">Gallery</a>
+        <a href="#" class="text-secondary text-decoration-none">Museums</a>
       </div>
     </div>
+    <main>
+      <div class="container py-5">
+        <h1 class="section-title">Artwork Gallery</h1>
+
+        <div class="row g-4" id="artwork-gallery">
+          <!-- Cards will be generated here -->
+        </div>
+
+        <!-- Detail View Modal -->
+        <div
+          class="modal fade"
+          id="detailModal"
+          tabindex="-1"
+          aria-labelledby="detailModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="detailModalLabel">
+                  Artwork Details
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <img
+                      id="detailImage"
+                      src=""
+                      class="detail-image"
+                      alt="Artwork Detail"
+                      onclick="showFullscreen(this.src)"
+                    />
+                    <div class="text-center mt-2">
+                      <small class="text-muted">
+                        <i class="fas fa-search-plus me-1"></i>
+                        Click image to view fullscreen
+                      </small>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="detail-info">
+                      <h2 id="detailTitle" class="detail-title"></h2>
+                      <p id="detailArtist" class="detail-artist"></p>
+                      <div id="detailPrice" class="detail-price"></div>
+                      <p id="detailDescription" class="detail-description"></p>
+
+                      <div class="detail-specs">
+                        <h6 class="mb-3">
+                          <i class="fas fa-info-circle me-2"></i>Artwork
+                          Specifications
+                        </h6>
+                        <div class="spec-item">
+                          <span class="spec-label">Style:</span>
+                          <span class="spec-value" id="detailStyle"
+                            >Traditional Khmer</span
+                          >
+                        </div>
+                        <div class="spec-item">
+                          <span class="spec-label">Medium:</span>
+                          <span class="spec-value" id="detailMedium"
+                            >Digital Art Print</span
+                          >
+                        </div>
+                        <div class="spec-item">
+                          <span class="spec-label">Dimensions:</span>
+                          <span class="spec-value" id="detailDimensions"
+                            >24" × 32"</span
+                          >
+                        </div>
+                        <div class="spec-item">
+                          <span class="spec-label">Year:</span>
+                          <span class="spec-value" id="detailYear">2024</span>
+                        </div>
+                        <div class="spec-item">
+                          <span class="spec-label">Edition:</span>
+                          <span class="spec-value" id="detailEdition"
+                            >Limited Edition</span
+                          >
+                        </div>
+                        <div class="spec-item">
+                          <span class="spec-label">Availability:</span>
+                          <span class="spec-value" id="detailAvailability"
+                            >In Stock</span
+                          >
+                        </div>
+                      </div>
+
+                      <div class="d-flex gap-3">
+                        <button
+                          class="btn btn-primary flex-fill"
+                          id="detailBuyBtn"
+                          onclick="buyFromDetail()"
+                        >
+                          <i class="fas fa-shopping-cart me-2"></i>Buy Now
+                        </button>
+                        <button
+                          class="btn btn-outline-secondary"
+                          id="detailLikeBtn"
+                          onclick="toggleDetailLike()"
+                        >
+                          <i class="far fa-heart"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Purchase Modal -->
+        <div
+          class="modal fade"
+          id="buyModal"
+          tabindex="-1"
+          aria-labelledby="buyModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="buyModalLabel">Purchase Artwork</h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-md-5">
+                    <img
+                      id="artworkImage"
+                      src=""
+                      class="img-fluid rounded"
+                      alt="Artwork"
+                    />
+                  </div>
+                  <div class="col-md-7">
+                    <form id="purchaseForm">
+                      <div class="mb-3">
+                        <label class="form-label"
+                          ><strong>Artwork Details</strong></label
+                        >
+                        <input
+                          type="text"
+                          id="artworkTitle"
+                          class="form-control"
+                          readonly
+                        />
+                        <input
+                          type="text"
+                          id="artworkArtist"
+                          class="form-control mt-2"
+                          readonly
+                        />
+                        <input
+                          type="text"
+                          id="artworkPrice"
+                          class="form-control mt-2"
+                          readonly
+                        />
+                      </div>
+
+                      <hr />
+
+                      <div class="mb-3">
+                        <label for="customerName" class="form-label"
+                          >Full Name *</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="customerName"
+                          name="customerName"
+                          required
+                        />
+                      </div>
+
+                      <div class="mb-3">
+                        <label for="email" class="form-label"
+                          >Email Address *</label
+                        >
+                        <input
+                          type="email"
+                          class="form-control"
+                          id="email"
+                          name="email"
+                          required
+                        />
+                      </div>
+
+                      <div class="mb-3">
+                        <label for="phone" class="form-label"
+                          >Phone Number *</label
+                        >
+                        <input
+                          type="tel"
+                          class="form-control"
+                          id="phone"
+                          name="phone"
+                          required
+                        />
+                      </div>
+
+                      <div class="mb-3">
+                        <label for="address" class="form-label"
+                          >Shipping Address</label
+                        >
+                        <textarea
+                          class="form-control"
+                          id="address"
+                          name="address"
+                          rows="3"
+                          placeholder="Enter your full shipping address"
+                        ></textarea>
+                      </div>
+
+                      <div class="mb-3">
+                        <label for="paymentMethod" class="form-label"
+                          >Payment Method</label
+                        >
+                        <select
+                          class="form-select"
+                          id="paymentMethod"
+                          name="paymentMethod"
+                        >
+                          <option value="credit-card">Credit Card</option>
+                          <option value="debit-card">Debit Card</option>
+                          <option value="paypal">PayPal</option>
+                          <option value="bank-transfer">Bank Transfer</option>
+                        </select>
+                      </div>
+
+                      <div class="mb-3">
+                        <label for="specialInstructions" class="form-label"
+                          >Special Instructions</label
+                        >
+                        <textarea
+                          class="form-control"
+                          id="specialInstructions"
+                          name="specialInstructions"
+                          rows="2"
+                          placeholder="Any special delivery or handling instructions"
+                        ></textarea>
+                      </div>
+
+                      <div class="form-check mb-3">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="agreeTerms"
+                          required
+                        />
+                        <label class="form-check-label" for="agreeTerms">
+                          I agree to the terms and conditions *
+                        </label>
+                      </div>
+
+                      <div class="form-check mb-3">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="newsletter"
+                        />
+                        <label class="form-check-label" for="newsletter">
+                          Subscribe to our newsletter for updates on new artwork
+                        </label>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  onclick="submitPurchase()"
+                >
+                  <i class="fas fa-credit-card me-1"></i>Complete Purchase
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fullscreen Image Overlay -->
+        <div
+          id="fullscreenOverlay"
+          class="fullscreen-overlay"
+          onclick="hideFullscreen()"
+        >
+          <img
+            id="fullscreenImage"
+            class="fullscreen-image"
+            src=""
+            alt="Fullscreen Artwork"
+          />
+        </div>
+      </div>
+    </main>
+    <!-- Footer -->
+    <footer class="mt-5 pt-5 pb-3 w-100">
+      <div class="container">
+        <div class="row text-center text-md-start">
+          <!-- About Section -->
+          <div class="col-md-4 mb-4">
+            <h5>About Artory</h5>
+            <p>
+              Artory is dedicated to promoting Cambodian artists and sharing
+              stories that inspire creativity. We celebrate both traditional and
+              contemporary art through exhibitions, features, and news.
+            </p>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="col-md-4 mb-4">
+            <h5>Visit Us</h5>
+            <p>Artory Gallery</p>
+            <p>Phnom Penh, Cambodia</p>
+            <p>Open: Mon - Fri / 9 AM - 5 PM</p>
+            <p>Email: info@artory.com</p>
+            <p>Phone: +855 XXX XXX XXX</p>
+          </div>
+
+          <!-- Social Media -->
+          <div class="col-md-4 mb-4">
+            <h5>Follow Us</h5>
+            <p>Stay connected through our social media channels:</p>
+            <a href="#" class="text-white me-3"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="#" class="text-white me-3"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="#" class="text-white me-3"
+              ><i class="fab fa-tiktok"></i
+            ></a>
+            <a href="#" class="text-white me-3"
+              ><i class="fab fa-youtube"></i
+            ></a>
+          </div>
+        </div>
+
+        <hr class="border-light" />
+
+        <div class="text-center">
+          <p class="mb-0">&copy; 2024 Artory. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script>
@@ -576,10 +762,10 @@
           image: "/image/sell/1.jpg",
           price: "$850",
           featured: true,
-          dimensions: "24\" × 32\"",
+          dimensions: '24" × 32"',
           medium: "Digital Art Print on Canvas",
           year: "2024",
-          edition: "Limited Edition - 50 prints"
+          edition: "Limited Edition - 50 prints",
         },
         {
           title: "Vibrant Motion",
@@ -589,83 +775,89 @@
           image: "/image/sell/2.jpg",
           price: "$620",
           featured: false,
-          dimensions: "20\" × 28\"",
+          dimensions: '20" × 28"',
           medium: "Digital Art Print",
           year: "2024",
-          edition: "Open Edition"
+          edition: "Open Edition",
         },
         {
           title: "Classic Charm",
           artist: "Khmer civilization",
-          description: "A richly detailed Apsara in traditional orange attire, glowing against a textured background. This piece showcases the intricate details of royal court costumes.",
+          description:
+            "A richly detailed Apsara in traditional orange attire, glowing against a textured background. This piece showcases the intricate details of royal court costumes.",
           image: "/image/sell/3.jpg",
           price: "$750",
           featured: false,
-          dimensions: "22\" × 30\"",
+          dimensions: '22" × 30"',
           medium: "Digital Art Print on Fine Paper",
           year: "2024",
-          edition: "Limited Edition - 75 prints"
+          edition: "Limited Edition - 75 prints",
         },
         {
           title: "Royal Blue Aura",
           artist: "Khmer civilization",
-          description: "Regal and poised, this Apsara blends royalty and Khmer beauty. The deep blue tones create a sense of mystique and divine presence.",
+          description:
+            "Regal and poised, this Apsara blends royalty and Khmer beauty. The deep blue tones create a sense of mystique and divine presence.",
           image: "/image/sell/4.jpg",
           price: "$940",
           featured: true,
-          dimensions: "26\" × 34\"",
+          dimensions: '26" × 34"',
           medium: "Premium Canvas Print",
           year: "2024",
-          edition: "Limited Edition - 25 prints"
+          edition: "Limited Edition - 25 prints",
         },
         {
           title: "Mythical Motion",
           artist: "Khmer civilization",
-          description: "A vibrant portrayal of celestial dancers in Khmer folklore. Multiple figures create a dynamic composition celebrating the rich mythology of Cambodia.",
+          description:
+            "A vibrant portrayal of celestial dancers in Khmer folklore. Multiple figures create a dynamic composition celebrating the rich mythology of Cambodia.",
           image: "/image/sell/5.jpg",
           price: "$420",
           featured: false,
-          dimensions: "18\" × 24\"",
+          dimensions: '18" × 24"',
           medium: "Digital Art Print",
           year: "2024",
-          edition: "Open Edition"
+          edition: "Open Edition",
         },
         {
           title: "Monochrome Grace",
           artist: "Khmer civilization",
-          description: "A rare, grayscale Apsara with refined elegance and mystery. The absence of color focuses attention on form, movement, and spiritual expression.",
+          description:
+            "A rare, grayscale Apsara with refined elegance and mystery. The absence of color focuses attention on form, movement, and spiritual expression.",
           image: "/image/sell/6.jpg",
           price: "$580",
           featured: false,
-          dimensions: "20\" × 26\"",
+          dimensions: '20" × 26"',
           medium: "Black & White Print",
           year: "2024",
-          edition: "Limited Edition - 100 prints"
+          edition: "Limited Edition - 100 prints",
         },
         {
           title: "Temple Dance",
           artist: "Khmer civilization",
-          description: "Apsara in red flows with energy in front of Angkor's majestic silhouette. This piece connects the divine dancers with their sacred architectural heritage.",
+          description:
+            "Apsara in red flows with energy in front of Angkor's majestic silhouette. This piece connects the divine dancers with their sacred architectural heritage.",
           image: "/image/sell/7.jpg",
           price: "$690",
           featured: false,
-          dimensions: "24\" × 30\"",
+          dimensions: '24" × 30"',
           medium: "Digital Art Print on Canvas",
           year: "2024",
-          edition: "Limited Edition - 60 prints"
+          edition: "Limited Edition - 60 prints",
         },
         {
           title: "Regal Radiance",
           artist: "Khmer civilization",
-          description: "The ultimate luxury: a dazzling purple-clad Apsara in full motion and gold detail. This premium piece represents the pinnacle of celestial beauty and artistic achievement.",
+          description:
+            "The ultimate luxury: a dazzling purple-clad Apsara in full motion and gold detail. This premium piece represents the pinnacle of celestial beauty and artistic achievement.",
           image: "/image/sell/8.jpg",
           price: "$1,200",
           featured: true,
-          dimensions: "30\" × 40\"",
+          dimensions: '30" × 40"',
           medium: "Premium Canvas with Gold Leaf Accents",
           year: "2024",
-          edition: "Limited Edition - 15 prints"
-        }
+          edition: "Limited Edition - 15 prints",
+        },
       ];
 
       let currentArtwork = null;
@@ -696,38 +888,55 @@
 
       function viewArtwork(index) {
         currentArtwork = artworkData[index];
-        
+
         // Populate detail modal
         document.getElementById("detailImage").src = currentArtwork.image;
-        document.getElementById("detailTitle").textContent = currentArtwork.title;
-        document.getElementById("detailArtist").textContent = "by " + currentArtwork.artist;
-        document.getElementById("detailPrice").textContent = currentArtwork.price;
-        document.getElementById("detailDescription").textContent = currentArtwork.description;
-        
+        document.getElementById("detailTitle").textContent =
+          currentArtwork.title;
+        document.getElementById("detailArtist").textContent =
+          "by " + currentArtwork.artist;
+        document.getElementById("detailPrice").textContent =
+          currentArtwork.price;
+        document.getElementById("detailDescription").textContent =
+          currentArtwork.description;
+
         // Update specifications
-        document.getElementById("detailDimensions").textContent = currentArtwork.dimensions;
-        document.getElementById("detailMedium").textContent = currentArtwork.medium;
+        document.getElementById("detailDimensions").textContent =
+          currentArtwork.dimensions;
+        document.getElementById("detailMedium").textContent =
+          currentArtwork.medium;
         document.getElementById("detailYear").textContent = currentArtwork.year;
-        document.getElementById("detailEdition").textContent = currentArtwork.edition;
-        
+        document.getElementById("detailEdition").textContent =
+          currentArtwork.edition;
+
         // Show availability
         document.getElementById("detailAvailability").textContent = "In Stock";
-        document.getElementById("detailAvailability").className = "spec-value text-success";
+        document.getElementById("detailAvailability").className =
+          "spec-value text-success";
 
         // Show the modal
-        const modal = new bootstrap.Modal(document.getElementById("detailModal"));
+        const modal = new bootstrap.Modal(
+          document.getElementById("detailModal")
+        );
         modal.show();
       }
 
       function buyFromDetail() {
         if (currentArtwork) {
           // Close detail modal first
-          const detailModal = bootstrap.Modal.getInstance(document.getElementById("detailModal"));
+          const detailModal = bootstrap.Modal.getInstance(
+            document.getElementById("detailModal")
+          );
           detailModal.hide();
-          
+
           // Open buy modal with current artwork data
           setTimeout(() => {
-            buyArtwork(currentArtwork.title, currentArtwork.price, currentArtwork.artist, currentArtwork.image);
+            buyArtwork(
+              currentArtwork.title,
+              currentArtwork.price,
+              currentArtwork.artist,
+              currentArtwork.image
+            );
           }, 300);
         }
       }
@@ -735,10 +944,10 @@
       function toggleDetailLike() {
         const btn = document.getElementById("detailLikeBtn");
         const icon = btn.querySelector("i");
-        
+
         btn.classList.toggle("btn-outline-secondary");
         btn.classList.toggle("btn-danger");
-        
+
         if (btn.classList.contains("btn-danger")) {
           icon.classList.remove("far");
           icon.classList.add("fas");
@@ -849,8 +1058,8 @@
       document.getElementById("artwork-gallery").innerHTML = content;
 
       // Handle escape key for fullscreen
-      document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape') {
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
           hideFullscreen();
         }
       });
