@@ -1,0 +1,37 @@
+body{
+    margin: 0px 0px;
+}
+
+
+.heroSection{
+      margin-top: 10vh;
+
+  height: 30vh;
+
+}
+
+.artCategory{
+    height: 15vh;
+}
+
+.artLink{
+    text-decoration: none;
+    font-size: 12;
+    color: darkblue;
+    transition:  color 0.3s ease;
+}
+
+.artCategory img{
+    object-position: center;
+    transition: box-shadow 1s ease-in;
+}
+
+.artCategory img:hover{
+    box-shadow: 3px 3px 3px 4px rgba(0, 0, 0, 0.133);
+}
+
+
+
+.artLink:hover{
+    color: rgba(0, 0, 139, 0.278);
+}

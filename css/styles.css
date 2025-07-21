@@ -6,7 +6,7 @@ body {
 }
 
 .slider {
-    height: 250px;
+    height: 350px;
     margin: auto;
     margin-top: 20px;
     position: relative;
@@ -18,7 +18,7 @@ body {
 
 .slide-track {
     display: flex;
-    width: calc(250px * 10);
+    width: calc(400px * 10);
     animation: scroll 8s linear infinite;
 }
 
@@ -31,12 +31,12 @@ body {
         transform: translateX(0);
     }
     100% {
-        transform: translateX(calc(-250px * 5));
+        transform: translateX(calc(-400px * 5));
     }
 }
 .slide {
-    height: 200px;
-    width: 250px;
+    height: 300px;
+    width: 400px;
     display: flex;
     align-items: center;
     padding: 5px;
@@ -61,7 +61,7 @@ img:hover {
     content: '';
     height: 100%;
     position: absolute;
-    width: 15%;
+    width: 10%;
     z-index: 2;
 }
 
@@ -90,3 +90,94 @@ img:hover {
 .navbar-nav .nav-link {
     font-weight: 500;
 }
+/* Featured Artiests */
+.card {
+    height: 100%;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+.card-img-top {
+    height: 250px;;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.card-text {
+    height: 50px;
+}
+/* Button style */
+.btn {
+    margin-top: 70px;
+    background-color: purple;
+    color: white;   
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.btn:hover {
+    background-color: #4b2c8c;
+    color: white;
+    transform: translateY(-2px);
+}
+/* Badge styling */
+.badge {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.75rem;
+    border-radius: 999px;
+    font-weight: 600;
+}
+/* Artworks for sales */
+.card-img-artwork {
+    height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+/* Footer */
+footer {
+    background-color: #111; /* Dark background for contrast */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+footer h5 {
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+footer p {
+    margin: 0 0 0.5rem;
+}
+
+footer a {
+    color: #eeeded;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: #f39c12; /* Accent color on hover */
+}
+
+footer .border-light {
+    border-color: rgba(255, 255, 255, 0.1);
+    margin: 2rem 0;
+}
+
+footer .fab {
+    font-size: 1.2rem;
+    transition: transform 0.3s, color 0.3s;
+}
+
+footer .fab:hover {
+    transform: scale(1.2);
+    color: #f39c12;
+}
+
+footer .text-center p {
+    color: #d6d3d3;
+    font-size: 14px;
+}
+

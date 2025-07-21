@@ -4,6 +4,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Artory</title>
 		<link rel="stylesheet" href="/css/museum.css" />
+		<link rel="stylesheet" href="/css/styles.css" />
 		<link
 			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
 			rel="stylesheet"
@@ -67,14 +68,18 @@
 				<a href="#" class="text-secondary text-decoration-none">Artist</a>
 				<a href="#" class="text-secondary text-decoration-none">Artwork</a>
 				<a href="#" class="text-secondary text-decoration-none">Gallery</a>
-				<a href="#" class="text-secondary text-decoration-none">Museums</a>
+				<a
+					href="/components/museums.html"
+					class="text-secondary text-decoration-none"
+					>Museums</a
+				>
 			</div>
 		</div>
 
 		<!-- Museums slide show -->
 		<div
 			id="carouselExampleInterval"
-			class="carousel slide museumSlide"
+			class="carousel slide museumSlide w-100"
 			data-bs-ride="carousel"
 		>
 			<div class="carousel-indicators">
@@ -100,35 +105,26 @@
 				></button>
 			</div>
 			<div class="carousel-inner slideCard">
-				<div class="carousel-item active h-100" data-bs-interval="3000">
+				<div class="carousel-item active h-100" data-bs-interval="2000">
 					<img
 						src="/image/museum/sr.webp"
 						class="d-block w-100 museumImg"
 						alt="Siem Reap Museum"
 					/>
-					<div class="carousel-caption d-block mt-5">
-						<h5>National Museum</h5>
-					</div>
 				</div>
-				<div class="carousel-item h-100" data-bs-interval="3000">
+				<div class="carousel-item h-100" data-bs-interval="2000">
 					<img
 						src="/image/museum/phnompenhMuseum.jpg"
 						class="d-block w-100 museumImg"
 						alt="Phnom Penh Museum"
 					/>
-					<div class="carousel-caption d-block mt-5">
-						<h5>National Museum</h5>
-					</div>
 				</div>
-				<div class="carousel-item h-100" data-bs-interval="3000">
+				<div class="carousel-item h-100" data-bs-interval="2000">
 					<img
 						src="/image/museum/siemreapMuseum.jpg"
 						class="d-block w-100 museumImg"
 						alt="Siem Reap Musuem"
 					/>
-					<div class="carousel-caption d-block">
-						<h5>National Museum</h5>
-					</div>
 				</div>
 			</div>
 			<button
@@ -150,139 +146,29 @@
 				<span class="visually-hidden">Next</span>
 			</button>
 		</div>
-		<!-- musuem Information -->
 
-		<div class="container mt-5">
-			<div class="row row-cols-1 row-cols-md-3 g-4">
-				<!-- Card 1 -->
-
-				<!-- Card 1 -->
-				<div class="col">
-					<div class="card museum-card shadow rounded-4 overflow-hidden h-100">
-						<img
-							src="/image/museum/850national5.jpg"
-							class="card-img-top cardImg"
-							alt="National Museum"
-						/>
-						<div
-							class="card-body text-center d-flex flex-column justify-content-evenly"
-						>
-							<h5 class="card-title">National Museum</h5>
-							<p class="card-text">
-								Located in Phnom Penh, the National Museum of Cambodia preserves
-								the country's cultural heritage and ancient artifacts.
-							</p>
-							<a href="#" class="btn btn-secondary">Learn More</a>
-						</div>
-					</div>
-				</div>
-
-				<!-- Card 2 -->
-				<div class="col">
-					<div class="card museum-card shadow rounded-4 overflow-hidden h-100">
-						<img
-							src="/image/museum/phnompenhMuseum.jpg"
-							class="card-img-top"
-							alt="Phnom Penh Museum"
-						/>
-						<div
-							class="card-body text-center d-flex flex-column justify-content-evenly"
-						>
-							<h5 class="card-title">Phnom Penh Museum</h5>
-							<p class="card-text">
-								This museum displays artifacts from the post-Angkorian era and
-								showcases modern Cambodian art and history.
-							</p>
-							<a href="#" class="btn btn-secondary">Learn More</a>
-						</div>
-					</div>
-				</div>
-
-				<!-- Card 3 -->
-				<div class="col">
-					<div class="card museum-card shadow rounded-4 overflow-hidden h-100">
-						<img
-							src="/image/museum/siemreapMuseum.jpg"
-							class="card-img-top"
-							alt="Siem Reap Museum"
-						/>
-						<div
-							class="card-body text-center d-flex flex-column justify-content-evenly"
-						>
-							<h5 class="card-title">Siem Reap Museum</h5>
-							<p class="card-text">
-								Near the Angkor temples, this museum features cultural and
-								religious artifacts from Cambodia’s golden era.
-							</p>
-							<a href="#" class="btn btn-secondary">Learn More</a>
-						</div>
-					</div>
-				</div>
-
-				<!-- card4 -->
-				<div class="col">
-					<div class="card museum-card shadow rounded-4 overflow-hidden h-100">
-						<img
-							src="/image/museum/Sra'Art Studio.avif"
-							class="card-img-top"
-							alt="Phnom Penh Museum"
-						/>
-						<div
-							class="card-body text-center d-flex flex-column justify-content-evenly"
-						>
-							<h5 class="card-title">Phnom Penh Museum</h5>
-							<p class="card-text">
-								This museum displays artifacts from the post-Angkorian era and
-								showcases modern Cambodian art and history.
-							</p>
-							<a href="#" class="btn btn-secondary">Learn More</a>
-						</div>
-					</div>
-				</div>
-
-				<!-- card5 -->
-				<div class="col">
-					<div class="card museum-card shadow rounded-4 overflow-hidden h-100">
-						<img
-							src="/image/museum/Sosoro.webp"
-							class="card-img-top"
-							alt="Phnom Penh Museum"
-						/>
-						<div
-							class="card-body text-center d-flex flex-column justify-content-evenly"
-						>
-							<h5 class="card-title">Phnom Penh Museum</h5>
-							<p class="card-text">
-								This museum displays artifacts from the post-Angkorian era and
-								showcases modern Cambodian art and history.
-							</p>
-							<a href="#" class="btn btn-secondary">Learn More</a>
-						</div>
-					</div>
-				</div>
-
-				<!-- card6 -->
-				<div class="col">
-					<div class="card museum-card shadow rounded-4 overflow-hidden h-100">
-						<img
-							src="/image/museum/panorama.jpg"
-							class="card-img-top"
-							alt="Phnom Penh Museum"
-						/>
-						<div
-							class="card-body text-center d-flex flex-column justify-content-evenly"
-						>
-							<h5 class="card-title">Phnom Penh Museum</h5>
-							<p class="card-text">
-								This museum displays artifacts from the post-Angkorian era and
-								showcases modern Cambodian art and history.
-							</p>
-							<a href="#" class="btn btn-secondary">Learn More</a>
-						</div>
-					</div>
-				</div>
+		<!-- museum hero-section -->
+		<div
+			class="heroSection d-flex align-items-center justify-content-center text-center text-white bg-dark w-100"
+		>
+			<div class="container">
+				<h5 class="fw-bold">Discover Cambodia’s Rich Heritage</h5>
+				<p style="font-size: 12">
+					Journey through time with our curated collection of museums and
+					cultural treasures.
+				</p>
+				<a href="#museum-list" class="btn btn-light mt-1 px-4 py-2 rounded-pill"
+					>Explore Museums</a
+				>
 			</div>
 		</div>
+
+		<!-- musuem Container -->
+
+		<div
+			id="museum-list"
+			class="row row-cols-1 row-cols-sm-2 row-cols-md-3 p-3 d-flex align-items-center justify-content-center"
+		></div>
 
 		<!-- footer -->
 		<footer class="mt-5 pt-5 pb-3 w-100">
@@ -334,7 +220,7 @@
 				</div>
 			</div>
 		</footer>
-
+		<script src="/components/addMuseum.js"></script>
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"

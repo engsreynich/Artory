@@ -1,80 +1,18 @@
-body {
-  font-family: 'Segoe UI', sans-serif;
-  color: #fff;
-  margin: 0;
-  padding: 0;
-  text-align: justify;
-}
-.about-section {
-    padding-bottom: 60px;
-    color: white;
-}
-.navbar {
-  background-color: rgba(203, 144, 224, 0);
-}
-.navbar-brand {
-  font-weight: 700;
-  font-size: 1.8rem;
-  color: white;
-}
-.nav-link {
-  font-weight: 700;
-  font-size: 1rem;
-  color: #fff;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
-}
 
-.nav-link:hover, .nav-link:focus {
-  color: #ff55f6;
-  text-shadow: 0 0 8px #ff55f6;
-}
-
-h1, h2, h4 {
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  text-shadow: 0 0 10px rgba(255, 85, 246, 0.7);
-  color: #ffb9fb;
-  margin-bottom: 1rem;
-  font-family: 'Segoe UI Black', 'Segoe UI', sans-serif;
-}
-
-p {
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.8;
-  color: #e0d9ff;
-  max-width: 700px;
-  margin: 0 auto 1.5rem;
-  text-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
-}
-
-
-
-
-
-.footer {
-    background-color: transparent;
-    color: white;
-}
-
-/* //slideSHow */
 
 .museumSlide{
-  margin-top: 20vh;
-  width: 100%;
+  margin-top: 10vh;
+  width: auto;
   height: 50vh;
   overflow: hidden;
+  margin-bottom: 2vh;
 }
 
 .cardSlide{
     height: 60vh;
-
+width: 100%;
 
 }
-
-
-
 
 
 .museumImg{
@@ -117,4 +55,9 @@ p {
 
 .btn{
   margin-top: 70px;
+}
+
+.heroSection{
+  height: 30vh;
+
 }
