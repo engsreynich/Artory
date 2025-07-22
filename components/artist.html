@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Artory | Cambodian Artwork Selling</title>
+    <!--SEO-->
+    <meta
+      name="description"
+      content="Artory is a platform for buying and selling Cambodian artwork. Discover unique pieces from talented artists."
+    />
+    <meta
+      name="keywords"
+      content="Cambodian artwork, buy art, sell art, Cambodian artists, art marketplace, unique art pieces"
+    />
+    <meta name="author" content="Artory Team" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="Artory | Cambodian Artwork Selling" />
+    <meta
+      property="og:description"
+      content="Artory is a platform for buying and selling Cambodian artwork. Discover unique pieces from talented artists."
+    />
+    <!--Stylesheet-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+    <style>
+      :root {
+        --lion: #b3926f;
+        --wheat: #f0d8b6;
+        --beige: #f0f0dc;
+        --columbia-blue: #d1e2f3;
+        --prussian-blue: #032a42;
+      }
+
+      body {
+        background-color: var(--beige);
+        font-family: "Segoe UI", sans-serif;
+        color: var(--prussian-blue);
+      }
+
+      .section-title {
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: bold;
+        margin: 3rem 0 1.5rem;
+      }
+
+      .banner {
+        height: 200px;
+        background: repeating-linear-gradient(
+          45deg,
+          #ccc,
+          #ccc 10px,
+          #eee 10px,
+          #eee 20px
+        );
+        margin-bottom: 2rem;
+      }
+
+      .artist-card img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-bottom: 1rem;
+        border: 4px solid var(--lion);
+      }
+
+      .artist-card {
+        text-align: center;
+        padding: 2rem;
+        transition: transform 0.3s ease;
+        background-color: var(--wheat);
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        height: 100%;
+      }
+
+      .artist-card:hover {
+        transform: scale(1.03);
+      }
+
+      footer {
+        background-color: var(--prussian-blue);
+        color: white;
+        padding: 2rem;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm fixed-top">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="index.html">
+          <span style="color: purple; font-family: cursive">Art</span>ory
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMenu"
+          aria-controls="navMenu"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMenu">
+          <form class="d-flex ms-lg-4 me-auto my-2 my-lg-0 w-50">
+            <div class="input-group w-100">
+              <span class="input-group-text bg-light border-0">
+                <i class="fas fa-search"></i>
+              </span>
+              <input
+                class="form-control border-0 bg-light"
+                type="search"
+                placeholder="Search..."
+                aria-label="Search"
+              />
+            </div>
+          </form>
+
+          <ul class="navbar-nav mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="buy.html">Buy</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sell.html">Sell</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="aboutus.html">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"
+                ><i class="fas fa-user-circle fa-lg"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Sub Navigation -->
+    <div
+      class="bg-white border-top border-bottom py-2 mt-5 shadow-sm fixed-top w-100"
+    >
+      <div class="container d-flex gap-4">
+        <a href="artist.html" class="text-secondary text-decoration-none"
+          >Artist</a
+        >
+        <a href="artwork.html" class="text-secondary text-decoration-none"
+          >Artwork</a
+        >
+        <a href="Gallery.html" class="text-secondary text-decoration-none"
+          >Gallery</a
+        >
+        <a href="museums.html" class="text-secondary text-decoration-none"
+          >Museums</a
+        >
+      </div>
+    </div>
+
+    <main>
+      >
+      <!-- Section Title -->
+      <div class="container">
+        <h2 class="section-title">MEET OUR EASTERN EUROPEAN ARTISTS</h2>
+      </div>
+
+      <!-- Banner with image and overlay -->
+      <div
+        class="banner container-fluid position-relative text-center text-white mb-5 p-0"
+        data-aos="zoom-in"
+      >
+        <img
+          src="/image/artistpage/khmer.jpg"
+          alt="Banner"
+          class="w-100"
+          style="height: 250px; object-fit: cover; opacity: 0.9"
+        />
+        <div class="position-absolute top-50 start-50 translate-middle">
+          <h2 class="fw-bold">Meet Our Cambodian Artists</h2>
+          <p class="lead">Celebrating identity, culture, and creativity</p>
+        </div>
+      </div>
+
+      <!-- Artist Grid -->
+      <section class="container py-5">
+        <div class="row g-4">
+          <!-- Artist: Din -->
+          <div class="col-12 col-sm-6 col-lg-4" data-aos="fade-up">
+            <div class="artist-card">
+              <img src="/image/artistpage/Din.jpg" alt="Din" />
+              <h5>Din</h5>
+              <p>
+                Modern storyteller blending culture & identity in contemporary
+                styles.
+              </p>
+            </div>
+          </div>
+
+          <!-- Artist: Naknoy -->
+          <div
+            class="col-12 col-sm-6 col-lg-4"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="artist-card">
+              <img src="/image/artistpage/Naknoy.jpg" alt="Naknoy" />
+              <h5>Naknoy</h5>
+              <p>
+                Bright, emotional scenes of Cambodian youth and everyday life.
+              </p>
+            </div>
+          </div>
+
+          <!-- Artist: Promponlue -->
+          <div
+            class="col-12 col-sm-6 col-lg-4"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="artist-card">
+              <img src="/image/artistpage/promponlue.webp" alt="Promponlue" />
+              <h5>Promponlue</h5>
+              <p>
+                Folklore and nature meet in vibrant, spiritual mixed-media
+                works.
+              </p>
+            </div>
+          </div>
+
+          <!-- Artist: Sopheap Nhem -->
+          <div
+            class="col-12 col-sm-6 col-lg-4"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <div class="artist-card">
+              <img src="/image/artistpage/Sopheapnhem.jpg" alt="Sopheap Nhem" />
+              <h5>Sopheap Nhem</h5>
+              <p>
+                Minimalist symbolism expressing healing, peace, and strength.
+              </p>
+            </div>
+          </div>
+
+          <!-- Artist: Chhan Dina -->
+          <div
+            class="col-12 col-sm-6 col-lg-4"
+            data-aos="fade-up"
+            data-aos-delay="400"
+          >
+            <div class="artist-card">
+              <img src="/image/artistpage/Chhan Dina.jpg" alt="Chhan Dina" />
+              <h5>Chhan Dina</h5>
+              <p>
+                A multidisciplinary sculptor and painter whose works evoke
+                nature and the feminine spirit.
+              </p>
+            </div>
+          </div>
+
+          <!-- Artist: Oeur Sokuntevy -->
+          <div
+            class="col-12 col-sm-6 col-lg-4"
+            data-aos="fade-up"
+            data-aos-delay="500"
+          >
+            <div class="artist-card">
+              <img
+                src="/image/artistpage/Oeur Sokuntevy.webp"
+                alt="Oeur Sokuntevy"
+              />
+              <h5>Oeur Sokuntevy</h5>
+              <p>
+                Known for her playful, surreal compositions that reflect
+                personal and cultural identity.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Footer -->
+    <footer class="mt-5 pt-5 pb-3 w-100">
+      <div class="container">
+        <div class="row text-center text-md-start">
+          <!-- About Section -->
+          <div class="col-md-4 mb-4">
+            <h5>About Artory</h5>
+            <p>
+              Artory is dedicated to promoting Cambodian artists and sharing
+              stories that inspire creativity. We celebrate both traditional and
+              contemporary art through exhibitions, features, and news.
+            </p>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="col-md-4 mb-4">
+            <h5>Visit Us</h5>
+            <p>Artory Gallery</p>
+            <p>Phnom Penh, Cambodia</p>
+            <p>Open: Mon - Fri / 9 AM - 5 PM</p>
+            <p>Email: info@artory.com</p>
+            <p>Phone: +855 XXX XXX XXX</p>
+          </div>
+
+          <!-- Social Media -->
+          <div class="col-md-4 mb-4">
+            <h5>Follow Us</h5>
+            <p>Stay connected through our social media channels:</p>
+            <a href="#" class="text-white me-3"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="#" class="text-white me-3"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="#" class="text-white me-3"
+              ><i class="fab fa-tiktok"></i
+            ></a>
+            <a href="#" class="text-white me-3"
+              ><i class="fab fa-youtube"></i
+            ></a>
+          </div>
+        </div>
+
+        <hr class="border-light" />
+
+        <div class="text-center">
+          <p class="mb-0">&copy; 2024 Artory. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
