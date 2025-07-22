@@ -76,8 +76,13 @@
             <li class="nav-item"><a class="nav-link" href="#">Sell</a></li>
             <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
             <li class="nav-item">
-              <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
-                  <i class="fas fa-user-circle fa-lg"></i>
+              <a
+                class="nav-link"
+                href="#"
+                data-bs-toggle="modal"
+                data-bs-target="#loginModal"
+              >
+                <i class="fas fa-user-circle fa-lg"></i>
               </a>
             </li>
           </ul>
@@ -343,7 +348,8 @@
               <div class="card-body pe-4" style="flex: 1">
                 <h5 class="card-title">Asian Artists to Watch 2024: Din Art</h5>
                 <p class="card-text">
-                  Each year, we spotlight rising Asian artists and their impactful, inspiring works shaping the region’s art scene.
+                  Each year, we spotlight rising Asian artists and their
+                  impactful, inspiring works shaping the region’s art scene.
                 </p>
                 <a
                   href="https://www.prestigeonline.com/hk/lifestyle/art-plus-design/asian-artists-to-watch-2024-din-art/#google_vignette"
@@ -368,8 +374,8 @@
                   Stage
                 </h5>
                 <p class="card-text">
-                  Cambodia is emerging as a key player in the global art scene, 
-                offering artists creative freedom rooted in its rich history.
+                  Cambodia is emerging as a key player in the global art scene,
+                  offering artists creative freedom rooted in its rich history.
                 </p>
                 <a
                   href="https://www.sraartstudios.com/post/destination-cambodia-artist"
@@ -391,7 +397,8 @@
               <div class="card-body pe-4" style="flex: 1">
                 <h5 class="card-title">Pushing Cambodia’s Art Economy</h5>
                 <p class="card-text">
-                  In this second instalment, Kiripost explores Cambodia’s art market and its economic potential.
+                  In this second instalment, Kiripost explores Cambodia’s art
+                  market and its economic potential.
                 </p>
                 <a
                   href="https://kiripost.com/stories/pushing-cambodias-art-economy"
@@ -416,7 +423,8 @@
                   Sopheap Nhem
                 </h5>
                 <p class="card-text">
-                  Sopheap Nhem’s *Early Morning with the Savior* was shown at the 10th International Art Competition.
+                  Sopheap Nhem’s *Early Morning with the Savior* was shown at
+                  the 10th International Art Competition.
                 </p>
                 <a
                   href="https://news-kh.churchofjesuschrist.org/article/10th-international-art-competition-features-cambodian-artist"
@@ -437,66 +445,123 @@
       </div>
     </main>
     <!-- Form Login Modal -->
-    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="loginModalLabel">Login</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="email" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Login</button>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <p class="mb-0">Don't have an account? 
-                        <a href="#" class="text-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Sign Up</a>
-                    </p>
-                </div>
-            </div>
+    <div
+      class="modal fade"
+      id="loginModal"
+      tabindex="-1"
+      aria-labelledby="loginModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="loginModalLabel">Login</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email" required />
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-primary w-100">Login</button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <p class="mb-0">
+              Don't have an account?
+              <a
+                href="#"
+                class="text-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#registerModal"
+                >Sign Up</a
+              >
+            </p>
+          </div>
         </div>
+      </div>
     </div>
     <!-- Form Register Modal -->
-    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="registerModalLabel">Register</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Full Name</label>
-                            <input type="text" class="form-control" id="name" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="emailRegister" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="emailRegister" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="passwordRegister" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="passwordRegister" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Register</button>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <p class="mb-0">Already have an account? 
-                        <a href="#" class="text-primary" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
-                    </p>
-                </div>
-            </div>
+    <div
+      class="modal fade"
+      id="registerModal"
+      tabindex="-1"
+      aria-labelledby="registerModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="registerModalLabel">Register</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="name" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="name" required />
+              </div>
+              <div class="mb-3">
+                <label for="emailRegister" class="form-label"
+                  >Email address</label
+                >
+                <input
+                  type="email"
+                  class="form-control"
+                  id="emailRegister"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="passwordRegister" class="form-label"
+                  >Password</label
+                >
+                <input
+                  type="password"
+                  class="form-control"
+                  id="passwordRegister"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-primary w-100">
+                Register
+              </button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <p class="mb-0">
+              Already have an account?
+              <a
+                href="#"
+                class="text-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#loginModal"
+                >Login</a
+              >
+            </p>
+          </div>
         </div>
+      </div>
     </div>
     <!-- Footer -->
     <footer class="mt-5 pt-5 pb-3 w-100">
