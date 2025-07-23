@@ -1,300 +1,386 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>aboutus</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='about.css') }}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Artory | Cambodian Artwork Selling</title>
+    <!--SEO-->
+    <meta
+      name="description"
+      content="Artory is a platform for buying and selling Cambodian artwork. Discover unique pieces from talented artists."
+    />
+    <meta
+      name="keywords"
+      content="Cambodian artwork, buy art, sell art, Cambodian artists, art marketplace, unique art pieces"
+    />
+    <meta name="author" content="Artory Team" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="Artory | Cambodian Artwork Selling" />
+    <meta
+      property="og:description"
+      content="Artory is a platform for buying and selling Cambodian artwork. Discover unique pieces from talented artists."
+    />
+    <!--Stylesheet-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <style>
-
-body {
-    min-height: 100vh;
-    display: grid;
-    place-items: center;
-    padding-top: 60px;
-}
-
-.slider {
-    height: 250px;
-    margin: auto;
-    margin-top: 20px;
-    position: relative;
-    width: 90%;
-    display: grid;
-    place-items: center;
-    overflow: hidden;
-}
-
-.slide-track {
-    display: flex;
-    width: calc(250px * 10);
-    animation: scroll 8s linear infinite;
-}
-
-.slide-track:hover {
-    animation-play-state: paused;
-}
-
-@keyframes scroll {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(calc(-250px * 5));
-    }
-}
-.slide {
-    height: 200px;
-    width: 250px;
-    display: flex;
-    align-items: center;
-    padding: 5px;
-    perspective: 100px;
-}
-
-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 10px;
-    transition: transform 1s;
-}
-
-img:hover {
-    transform: translateZ(20px);
-}
-
-.slider::before,
-.slider::after {
-    background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
-    content: '';
-    height: 100%;
-    position: absolute;
-    width: 15%;
-    z-index: 2;
-}
-
-.slider::before {
-    left: 0;
-    top: 0;
-}
-
-.slider::after {
-    right: 0;
-    top: 0;
-    transform: rotateZ(180deg);
-}
-
-/*Navbar styles*/
-.form-control:focus {
-    box-shadow: none;
-}
-
-.input-group .form-control {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    border-radius: 30px;
-}
-
-.navbar-nav .nav-link {
-    font-weight: 500;
-}
-.navbar-nav .nav-link {
-    color: #333;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-.navbar-nav .nav-link:hover {
-    color: #007bff;
-    text-decoration: underline;
-}
-
-.row.mt-4 {
-    padding: 2rem 1rem;
-}
-
-.row.mt-4 h4 {
-    font-weight: 600;
-    margin-bottom: 1rem;
-}
-
-.row.mt-4 p {
-    font-size: 1rem;
-    line-height: 1.7;
-    color: #444;
-}
-
-.team-section {
-    background-color: #f9fcff;
-    padding: 3rem 1rem;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.05);
-}
-
-.team-section h2 {
-    font-weight: 600;
-    color: #6c71fb;
-}
-
-.team-member {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.team-member:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-}
-
-.team-member img {
-    max-width: 130px;
-    height: 130px;
-    object-fit: cover;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 3px solid #fff;
-}
-
-.team-member h5 {
-    margin-top: 0.75rem;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #333;
-}
-
-.team-member p {
-    font-size: 0.9rem;
-    color: #777;
-    margin-bottom: 0;
-}
-
-/* Responsive: Center on small screens */
-@media (max-width: 767.98px) {
-    .team-member {
-        margin-bottom: 2rem;
-    }
-}
-</style>
-
-
-</head>
-<body>
-        <!-- Navbar -->
+      .team-card {
+        transition: all 0.3s ease;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .team-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+      .team-img {
+        height: 450px;
+        object-fit: cover;
+        object-position: top;
+      }
+      .social-icon {
+        width: 35px;
+        height: 35px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+      }
+      .social-icon:hover {
+        transform: scale(1.1);
+      }
+      .section-title {
+        position: relative;
+        display: inline-block;
+        margin-bottom: 20px;
+      }
+      .section-title:after {
+        content: "";
+        position: absolute;
+        width: 50px;
+        height: 3px;
+        background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .fade-in {
+        animation: fadeIn 0.8s ease forwards;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-white shadow-sm fixed-top">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="#">
-            <span style="color: purple; font-family: cursive;">Art</span>ory
-            </a>
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="../index.html">
+          <span style="color: purple; font-family: cursive">Art</span>ory
+        </a>
 
-            <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navMenu"
-            aria-controls="navMenu"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-            >
-            <span class="navbar-toggler-icon"></span>
-            </button>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMenu"
+          aria-controls="navMenu"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <div class="collapse navbar-collapse" id="navMenu">
-                <form class="d-flex ms-lg-4 me-auto my-2 my-lg-0 w-50">
-                    <div class="input-group w-100">
-                        <span class="input-group-text bg-light border-0">
-                            <i class="fas fa-search"></i>
-                        </span>
-                        <input
-                            class="form-control border-0 bg-light"
-                            type="search"
-                            placeholder="Search..."
-                            aria-label="Search"
-                        />
-                    </div>
-                </form>
-
-                <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="#">Buy</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Sell</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-user-circle fa-lg"></i></a>
-                    </li>
-                </ul>
+        <div class="collapse navbar-collapse" id="navMenu">
+          <form class="d-flex ms-lg-4 me-auto my-2 my-lg-0 w-50">
+            <div class="input-group w-100">
+              <span class="input-group-text bg-light border-0">
+                <i class="fas fa-search"></i>
+              </span>
+              <input
+                class="form-control border-0 bg-light"
+                type="search"
+                placeholder="Search..."
+                aria-label="Search"
+              />
             </div>
+          </form>
+
+          <ul class="navbar-nav mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="buy.html">Buy</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sell.html">Sell</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="aboutus.html">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"
+                ><i class="fas fa-user-circle fa-lg"></i
+              ></a>
+            </li>
+          </ul>
         </div>
+      </div>
     </nav>
     <!-- Sub Navigation -->
-    <div class="bg-white border-top border-bottom py-2 mt-5 shadow-sm fixed-top w-100">
-        <div class="container d-flex gap-4">
-            <a href="#" class="text-secondary text-decoration-none">Artist</a>
-            <a href="#" class="text-secondary text-decoration-none">Artwork</a>
-            <a href="#" class="text-secondary text-decoration-none">Gallery</a>
-            <a href="#" class="text-secondary text-decoration-none">Museums</a>
+    <div
+      class="bg-white border-top border-bottom py-2 mt-5 shadow-sm fixed-top w-100"
+    >
+      <div class="container d-flex gap-4">
+        <a href="artist.html" class="text-secondary text-decoration-none"
+          >Artist</a
+        >
+        <a href="artwork.html" class="text-secondary text-decoration-none"
+          >Artwork</a
+        >
+        <a href="Gallery.html" class="text-secondary text-decoration-none"
+          >Gallery</a
+        >
+        <a href="museums.html" class="text-secondary text-decoration-none"
+          >Museums</a
+        >
+      </div>
+    </div>
+    <main>
+      <!-- Mission Section -->
+      <section class="container py-5 mt-5">
+        <div class="row align-items-center">
+          <div class="col-md-6 mb-4 mb-md-0">
+            <div class="mission-card h-100">
+              <h1 class="mission-title">Our Mission</h1>
+              <p class="mission-text">
+                At Artory, our mission is to support and empower Cambodian
+                hand-drawing artists by connecting their original artworks with
+                art lovers around the world. We believe in the power of
+                creativity and culture, and we are committed to providing a
+                platform where local talent can thrive. By making it easy to buy
+                and sell hand-drawn art, we aim to preserve traditional skills,
+                celebrate Cambodian identity, and ensure that artists are fairly
+                recognized and rewarded for their work.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="mission-image">
+              <img
+                src="/image/aboutus/Angkor img.jpg"
+                alt="Angkor Temple"
+                class="img-fluid rounded"
+              />
+            </div>
+          </div>
         </div>
-    </div>
-    <div class="collapse navbar-collapse" id="navMenu">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item"><a class="nav-link" href="{{ url_for('blog_page') }}">Blog</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{ url_for('about_page') }}">About Us</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{ url_for('contact_page') }}">Contact Us</a></li>
-            </ul>
-    </div>
-        
-    
-     <div class="row mt-4">
-            <div class="col-md-6">
-                <h1 class="text-center">Our Mission</h1>
-                <p class="fs-3 text">At Artory, our mission is to support and empower Cambodian hand-drawing artists by connecting their original artworks with art lovers around the world. We believe in the power of creativity and culture, and we are committed to providing a platform where local talent can thrive. By making it easy to buy and sell hand-drawn art, we aim to preserve traditional skills, celebrate Cambodian identity, and ensure that artists are fairly recognized and rewarded for their work.</p>
-            </div>
-            <div class="col-md-6">
-                <img src="/image/aboutus/Angkor img.jpg" alt="">
-            </div>
-            
-    </div>
-               
-   <div class="container mt-5 team-section">
-        <h2 class="text-center mb-4">Meet Our Team</h2>
-        <div class="row justify-content-center">
-
-            <!-- Member 1 -->
-            <div class="col-md-2 col-sm-6 text-center team-member mx-3 mb-4">
-                <img src="/image/aboutus/Nich.jpg" class="img-fluid rounded-circle shadow-sm mb-2" alt="Member 1">
-                <h5 class="mt-2">Eng Sreynich</h5>
-                <p class="small">Leader</p>
+      </section>
+      <!-- Team Section (HTML container only) -->
+      <!-- Team Section -->
+      <section class="py-5 bg-light">
+        <div class="container">
+          <div class="team-section fade-in">
+            <div class="text-center mb-5">
+              <h2 class="section-title text-uppercase fw-bold">
+                Meet Our Amazing Team
+              </h2>
+              <p class="text-muted fs-5">
+                The creative minds behind our mission to empower Cambodian
+                artists
+              </p>
             </div>
 
-            <!-- Member 2 -->
-            <div class="col-md-2 col-sm-6 text-center team-member mx-3 mb-4">
-                <img src="/image/aboutus/vatey.jpg" class="img-fluid rounded-circle shadow-sm mb-2 member2-img" alt="Member 2">
-                <h5 class="mt-2">Somavatey Sorn</h5>
-                <p class="small">Frontend Developer</p>
+            <!-- First Row with 3 columns -->
+            <div class="row g-4 mb-4" id="team-row-1">
+              <!-- First 3 team members will be injected here by JS -->
             </div>
 
-            <!-- Member 3 -->
-            <div class="col-md-2 col-sm-6 text-center team-member mx-3 mb-4">
-                <img src="/image/aboutus/Laurie.jpg" class="img-fluid rounded-circle shadow-sm mb-2" alt="Member 3">
-                <h5 class="mt-2">Laurie Song</h5>
-                <p class="small">Frontend Developer</p>
+            <!-- Second Row with 2 columns -->
+            <div class="row g-4 justify-content-center" id="team-row-2">
+              <!-- Last 2 team members will be injected here by JS -->
             </div>
+          </div>
+        </div>
+      </section>
 
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+      <script>
+        const teamMembers = [
+          {
+            name: "Eng Sreynich",
+            role: "Team Leader",
+            img: "/image/aboutus/Nich.jpg",
+            facebook: "https://www.facebook.com/eng.sreynich.752/",
+            instagram: "#",
+            twitter: "#",
+          },
+          {
+            name: "Sorn Somavatey",
+            role: "Frontend Developer",
+            img: "/image/aboutus/vatey.jpg",
+            facebook: "https://www.facebook.com/profile.php?id=100076404223013",
+            instagram: "#",
+            twitter: "#",
+          },
+          {
+            name: "Song Laurie",
+            role: "Frontend Developer",
+            img: "/image/aboutus/Laurie.jpg",
+            facebook: "https://www.facebook.com/chey.chantha.7161",
+            instagram: "#",
+            twitter: "#",
+          },
+          {
+            name: "Loeung Chhumsomary",
+            role: "Frontend Developer",
+            img: "/image/aboutus/mary1.jpg",
+            facebook: "https://www.facebook.com/chey.chantha.7161",
+            instagram: "#",
+            twitter: "#",
+          },
+          {
+            name: "Roem Hanny",
+            role: "Frontend Developer",
+            img: "/image/aboutus/han1.jpg",
+            facebook: "https://www.facebook.com/chey.chantha.7161",
+            instagram: "#",
+            twitter: "#",
+          },
+        ];
 
-<!-- Member 4 -->
-            <div class="col-md-2 col-sm-6 text-center team-member mx-3 mb-4">
-                <img src="/image/aboutus/Mary.jpg" class="img-fluid rounded-circle shadow-sm mb-2" alt="Member 4">
-                <h5 class="mt-2">Loeung Chhumsomary</h5>
-                <p class="small">Frontend Developer</p>
-            </div>
+        const teamRow1 = document.getElementById("team-row-1");
+        const teamRow2 = document.getElementById("team-row-2");
 
-            <!-- Member 5 -->
-            <div class="col-md-2 col-sm-6 text-center team-member mx-3 mb-4">
-                <img src="/image/aboutus/Hannie.jpg" class="img-fluid rounded-circle shadow-sm mb-2" alt="Member 5">
-                <h5 class="mt-2">Roem Hanny</h5>
-                <p class="small">Frontend Developer</p>
-            </div>
+        // First 3 members in row 1 (3 columns)
+        teamMembers.slice(0, 3).forEach((member) => {
+          const col = document.createElement("div");
+          col.className = "col-md-4";
 
-     </div>
-</div>...
-</body>
+          col.innerHTML = `
+                <div class="team-card card h-100 border-0 shadow-sm">
+                    <img src="${member.img}" class="team-img card-img-top" alt="${member.name}">
+                    <div class="card-body text-center py-4">
+                        <h5 class="card-title fw-bold mb-1">${member.name}</h5>
+                        <p class="card-text text-muted mb-3">${member.role}</p>
+                        <div class="d-flex justify-content-center gap-3">
+                            <a href="${member.facebook}" target="_blank" class="social-icon bg-primary text-white">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="${member.instagram}" target="_blank" class="social-icon bg-danger text-white">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="${member.twitter}" target="_blank" class="social-icon bg-info text-white">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+          teamRow1.appendChild(col);
+        });
+
+        // Last 2 members in row 2 (2 columns - centered)
+        teamMembers.slice(3).forEach((member) => {
+          const col = document.createElement("div");
+          col.className = "col-md-6 col-lg-5";
+
+          col.innerHTML = `
+                <div class="team-card card h-100 border-0 shadow-sm">
+                    <img src="${member.img}" class="team-img card-img-top" alt="${member.name}">
+                    <div class="card-body text-center py-4">
+                        <h5 class="card-title fw-bold mb-1">${member.name}</h5>
+                        <p class="card-text text-muted mb-3">${member.role}</p>
+                        <div class="d-flex justify-content-center gap-3">
+                            <a href="${member.facebook}" target="_blank" class="social-icon bg-primary text-white">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="${member.instagram}" target="_blank" class="social-icon bg-danger text-white">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="${member.twitter}" target="_blank" class="social-icon bg-info text-white">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+          teamRow2.appendChild(col);
+        });
+      </script>
+    </main>
+    <!-- Footer -->
+    <footer class="mt-5 pt-5 pb-3 w-100">
+      <div class="container">
+        <div class="row text-center text-md-start">
+          <!-- About Section -->
+          <div class="col-md-4 mb-4">
+            <h5>About Artory</h5>
+            <p>
+              Artory is dedicated to promoting Cambodian artists and sharing
+              stories that inspire creativity. We celebrate both traditional and
+              contemporary art through exhibitions, features, and news.
+            </p>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="col-md-4 mb-4">
+            <h5>Visit Us</h5>
+            <p>Artory Gallery</p>
+            <p>Phnom Penh, Cambodia</p>
+            <p>Open: Mon - Fri / 8 AM - 5 PM</p>
+            <p>Email: info@artory.com</p>
+            <p>Phone: +855 123 456 789</p>
+          </div>
+
+          <!-- Social Media -->
+          <div class="col-md-4 mb-4">
+            <h5>Follow Us</h5>
+            <p>Stay connected through our social media channels:</p>
+            <a href="#" class="text-white me-3"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="#" class="text-white me-3"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="#" class="text-white me-3"
+              ><i class="fab fa-tiktok"></i
+            ></a>
+            <a href="#" class="text-white me-3"
+              ><i class="fab fa-youtube"></i
+            ></a>
+          </div>
+        </div>
+
+        <hr class="border-light" />
+
+        <div class="text-center">
+          <p class="mb-0">&copy; 2024 Artory. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
