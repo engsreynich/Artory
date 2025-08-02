@@ -36,6 +36,138 @@
     />
     <link rel="stylesheet" href="/css/styles.css" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
+     <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .artist-card {
+        animation: fadeIn 0.5s ease-out forwards;
+        opacity: 0;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .artist-card:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .artist-card:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .artist-card:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      .artist-card:nth-child(4) {
+        animation-delay: 0.4s;
+      }
+      .artist-card:nth-child(5) {
+        animation-delay: 0.5s;
+      }
+      .artist-card:nth-child(6) {
+        animation-delay: 0.6s;
+      }
+
+      .artist-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+      }
+
+      .artist-image {
+        transition: transform 0.3s ease;
+        height: 250px;
+        object-fit: cover;
+      }
+
+      .artist-card:hover .artist-image {
+        transform: scale(1.05);
+      }
+
+      .banner-overlay {
+        background: linear-gradient(
+          45deg,
+          rgba(0, 0, 0, 0.4),
+          rgba(0, 0, 0, 0.2)
+        );
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .filter-btn {
+        border: 2px solid #e9ecef;
+        transition: all 0.3s ease;
+      }
+
+      .filter-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .filter-btn.active {
+        background-color: #0d6efd !important;
+        color: white !important;
+        border-color: #0d6efd !important;
+      }
+
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 4px;
+      }
+
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+      }
+
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 10px;
+      }
+
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+
+      .achievement-list {
+        max-height: 120px;
+        overflow-y: auto;
+      }
+
+      .social-link {
+        width: 35px;
+        height: 35px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        color: white;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .social-link:hover {
+        transform: scale(1.1);
+        color: white;
+      }
+
+      .category-badge {
+        font-size: 0.75rem;
+        font-weight: 600;
+        padding: 0.25rem 0.75rem;
+      }
+    </style>
   </head>
   <body>
     <!-- Navbar -->
@@ -111,7 +243,80 @@
       </div>
     </div>
     <main>
-      
+      >
+
+       <!-- Banner Section -->
+      <div class="position-relative mb-5">
+        <img
+          src="/image/artistpage/khmer.jpg"
+          alt="Cambodian Art Banner"
+          class="w-100"
+          style="height: 300px; object-fit: cover"
+        />
+        <div class="banner-overlay">
+          <div class="text-center text-white">
+            <h1 class="display-4 fw-bold mb-3">
+              Cambodian <span class="text-primary">Artists</span>
+            </h1>
+            <p class="lead mb-4">
+              Discover the vibrant talents shaping Cambodia's contemporary art
+              scene
+            </p>
+            <div
+              class="mx-auto bg-primary rounded-pill"
+              style="width: 60px; height: 4px"
+            ></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter Buttons -->
+      <div class="flex flex-wrap justify-center gap-3 mb-12">
+        <button
+          class="filter-btn px-4 py-2 rounded-full bg-blue-600 text-white shadow-md hover:bg-blue-700 transition-all"
+          data-category="all"
+        >
+          All Artists
+        </button>
+        <button
+          class="filter-btn px-4 py-2 rounded-full bg-white text-gray-700 shadow-md hover:bg-gray-100 transition-all"
+          data-category="Visual Arts"
+        >
+          Visual Arts
+        </button>
+        <button
+          class="filter-btn px-4 py-2 rounded-full bg-white text-gray-700 shadow-md hover:bg-gray-100 transition-all"
+          data-category="Performing Arts"
+        >
+          Performing Arts
+        </button>
+        <button
+          class="filter-btn px-4 py-2 rounded-full bg-white text-gray-700 shadow-md hover:bg-gray-100 transition-all"
+          data-category="Digital Arts"
+        >
+          Digital Arts
+        </button>
+        <button
+          class="filter-btn px-4 py-2 rounded-full bg-white text-gray-700 shadow-md hover:bg-gray-100 transition-all"
+          data-category="Mixed Media"
+        >
+          Mixed Media
+        </button>
+        <button
+          class="filter-btn px-4 py-2 rounded-full bg-white text-gray-700 shadow-md hover:bg-gray-100 transition-all"
+          data-category="Sculpture"
+        >
+          Sculpture
+        </button>
+      </div>
+
+      <!-- Artists Grid -->
+      <div
+        id="artistContainer"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-10"
+      >
+        <!-- Artist cards will be inserted here by JavaScript -->
+      </div>
     </main>
     <!-- Footer -->
     <footer class="mt-5 pt-5 pb-3 w-100">
@@ -163,7 +368,342 @@
         </div>
       </div>
     </footer>
+     <script>
+      const artists = [
+        {
+          name: "Din",
+          age: 38,
+          image: "/image/artistpage/Din.jpg",
+          description:
+            "Din is a Phnom Penh-based visual artist inspired by traditional Khmer storytelling and modern themes. He blends culture and identity in contemporary styles.",
+          category: "Visual Arts",
+          specialty:
+            "Modern storytelling through contemporary painting & mixed media",
+          education:
+            "Bachelor of Fine Arts, Royal University of Fine Arts, Cambodia",
+          achievements: [
+            "Exhibited at Singapore Art Week 2022",
+            "Cambodia's Emerging Artist Award 2020",
+            "Exhibited in regional art fairs in Singapore and Thailand",
+            "Solo exhibition 'Echoes of the Past' at Java Arts",
+          ],
+          socialMedia: {
+            facebook: "dinartcambodia",
+            instagram: "din_art",
+            twitter: "din_artist",
+          },
+          website: "dinartcambodia.com",
+        },
+        {
+          name: "Naknoy",
+          age: 29,
+          image: "/image/artistpage/Naknoy.jpg",
+          description:
+            "Born in Siem Reap, Naknoy draws inspiration from rural life and youth culture, creating bright, emotional scenes of Cambodian everyday life.",
+          category: "Visual Arts",
+          specialty:
+            "Bright, emotional paintings of Cambodian youth and everyday life",
+          education:
+            "Self-taught; participated in workshops by Cambodian Living Arts",
+          achievements: [
+            "Mother Nature collection at Plantation Urban Resort, Phnom Penh",
+            "Curated by Nat Di Maggio of TRIBE Art Gallery",
+            "Featured in Kiri Post for celebrating strong women",
+            "Multiple solo exhibitions in Phnom Penh",
+          ],
+          socialMedia: {
+            facebook: "dinartcambodia",
+            instagram: "din_art",
+            twitter: "din_artist",
+          },
+          website: "dinartcambodia.com",
+        },
 
+        {
+          name: "Promponlue",
+          age: 41,
+          image: "/image/artistpage/promponlue.webp",
+          description:
+            "From Kampong Cham, Promponlue is heavily influenced by ancient myths and Buddhist teachings, creating vibrant spiritual mixed-media works.",
+          category: "Mixed Media",
+          specialty:
+            "Folklore and nature in vibrant, spiritual mixed-media works",
+          education: "Studied Fine Arts in Thailand and Cambodia",
+          achievements: [
+            "Solo exhibition at Sofitel Angkor Phokeetra Golf & Spa Resort",
+            "First Khmer artist showcased at Phnom Penh VIP Airport terminals",
+            "Tribe Premium project at international airport terminals",
+            "Featured in Prestige Magazine",
+          ],
+          socialMedia: {
+            facebook: "artponleu",
+            instagram: "artponleu",
+            twitter: "artponleu",
+          },
+          website: "dinartcambodia.com",
+        },
+
+        {
+          name: "Sopheap Nhem",
+          age: 36,
+          image: "/image/artistpage/sopheapnhem.jpg",
+          description:
+            "Born in a rural village near Phnom Penh, Sopheap captures the spiritual light and elegant beauty of Khmer culture with remarkable sensitivity.",
+          category: "Visual Arts",
+          specialty:
+            "Traditional Khmer cultural paintings with spiritual themes",
+          education: "Almost entirely self-taught with early formal lessons",
+          achievements: [
+            "Won 10th International Art Competition by The Church of Jesus Christ of Latter-day Saints (2015)",
+            "Painting 'Early Morning with the Savior' international recognition",
+            "Selected to represent Cambodia at 12th Annual Cambodia International Film Festival (2023)",
+            "Portrayed Apsara dancer at international festival",
+          ],
+          socialMedia: {
+            facebook: "sopheapnhem",
+            instagram: "sopheap_nhem",
+            twitter: "sopheap_nhem",
+          },
+          website: "sopheapnhem.org",
+        },
+        {
+          name: "Chhan Dina",
+          age: 45,
+          image: "/image/artistpage/Chhan Dina.jpg",
+          description:
+            "Born in 1984, Dina spent part of her early life in a refugee camp in Poipet. She teaches visual art to children and teenagers, driven by her love for art.",
+          category: "Sculpture",
+          specialty:
+            "Abstract painting and sculpture exploring life, music, nature, and wildlife",
+          education: "Self-developed through teaching experience",
+          achievements: [
+            "Exhibited in Cambodia, Columbia, France, Singapore, and USA",
+            "Only female Cambodian artist in UN Mine Action Programme",
+            "Created sophisticated sculptures addressing explosive remnants of war",
+            "Teaches at International School Phnom Penh and orphanages",
+          ],
+          socialMedia: {
+            facebook: "Chhan Dina",
+            instagram: "Chhan Dina",
+            twitter: "Chhan Dina",
+          },
+          website: "artistdina.com",
+        },
+        {
+          name: "Oeur Sokuntevy",
+          age: 41,
+          image: "/image/artistpage/Oeur Sokuntevy.webp",
+          description:
+            "Born in the Cambodian countryside, Tevy studied at Phare Ponleu Selpak and now works from Berlin, focusing on painting with surrealist influences.",
+          category: "Visual Arts",
+          specialty:
+            "Surrealist painting blending modern techniques with traditional Cambodian influences",
+          education: "Studied at Phare Ponleu Selpak in Battambang",
+          achievements: [
+            "Solo exhibition 'Something in the Signs' at Java Café and Gallery (2007)",
+            "Works with intricate sculptural elements using rattan, bamboo, coffee",
+            "Explores Khmer cultural beliefs through contemporary art",
+            "Based in Berlin, internationally exhibited",
+          ],
+          socialMedia: {
+            facebook: "sokuntevy",
+            instagram: "sokuntevy",
+            twitter: "sokuntevy",
+          },
+          website: "sokuntevy.com",
+        },
+       
+      ];
+
+      const artistContainer = document.getElementById("artistContainer");
+      const filterButtons = document.querySelectorAll(".filter-btn");
+
+      function generateArtistCard(artist) {
+        const achievementsList = artist.achievements
+          .slice(0, 3)
+          .map(
+            (ach) =>
+              `<li class="flex items-start mb-2">
+          <span class="inline-block w-2 h-2 bg-blue-500 rounded-full mt-2 mr-2"></span>
+          <span>${ach}</span>
+        </li>`
+          )
+          .join("");
+
+        const moreAchievements =
+          artist.achievements.length > 3
+            ? `<div class="text-sm text-gray-500 mt-1">+ ${
+                artist.achievements.length - 3
+              } more achievements</div>`
+            : "";
+
+        const socialLinks = [];
+        if (artist.socialMedia.facebook) {
+          socialLinks.push(`
+          <a href="https://facebook.com/${artist.socialMedia.facebook}" target="_blank" 
+             class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center hover:bg-blue-700 transition-colors">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+        `);
+        }
+        if (artist.socialMedia.instagram) {
+          socialLinks.push(`
+          <a href="https://instagram.com/${artist.socialMedia.instagram}" target="_blank" 
+             class="w-8 h-8 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white flex items-center justify-center hover:opacity-90 transition-opacity">
+            <i class="fab fa-instagram"></i>
+          </a>
+        `);
+        }
+        if (artist.socialMedia.twitter) {
+          socialLinks.push(`
+          <a href="https://twitter.com/${artist.socialMedia.twitter}" target="_blank" 
+             class="w-8 h-8 rounded-full bg-blue-400 text-white flex items-center justify-center hover:bg-blue-500 transition-colors">
+            <i class="fab fa-twitter"></i>
+          </a>
+        `);
+        }
+        if (artist.socialMedia.youtube) {
+          socialLinks.push(`
+          <a href="https://youtube.com/${artist.socialMedia.youtube}" target="_blank" 
+             class="w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center hover:bg-red-700 transition-colors">
+            <i class="fab fa-youtube"></i>
+          </a>
+        `);
+        }
+        if (artist.socialMedia.tiktok) {
+          socialLinks.push(`
+          <a href="https://tiktok.com/@${artist.socialMedia.tiktok}" target="_blank" 
+             class="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center hover:bg-gray-800 transition-colors">
+            <i class="fab fa-tiktok"></i>
+          </a>
+        `);
+        }
+        if (artist.website) {
+          socialLinks.push(`
+          <a href="https://${artist.website}" target="_blank" 
+             class="w-8 h-8 rounded-full bg-green-600 text-white flex items-center justify-center hover:bg-green-700 transition-colors">
+            <i class="fas fa-globe"></i>
+          </a>
+        `);
+        }
+
+        // Education section (if available)
+        const educationSection = artist.education
+          ? `
+          <div class="mb-4">
+            <h4 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-1">Education</h4>
+            <p class="text-gray-700 text-sm">${artist.education}</p>
+          </div>
+        `
+          : "";
+
+        return `
+        <div class="artist-card" data-category="${artist.category}">
+          <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
+            <!-- Artist Image -->
+            <div class="overflow-hidden">
+              <img src="${artist.image}" alt="${
+          artist.name
+        }" class="artist-image w-full h-64 object-cover">
+            </div>
+            
+            <!-- Artist Content -->
+            <div class="p-6 flex-grow flex flex-col">
+              <!-- Name and Age -->
+              <div class="flex justify-between items-start mb-4">
+                <h3 class="text-2xl font-bold text-gray-800">${artist.name}</h3>
+                <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">
+                  ${artist.age} years
+                </span>
+              </div>
+              
+              <!-- Category Badge -->
+              <span class="inline-block mb-4 px-3 py-1 text-sm font-semibold rounded-full 
+                ${
+                  artist.category === "Visual Arts"
+                    ? "bg-purple-100 text-purple-800"
+                    : artist.category === "Performing Arts"
+                    ? "bg-red-100 text-red-800"
+                    : artist.category === "Digital Arts"
+                    ? "bg-blue-100 text-blue-800"
+                    : artist.category === "Mixed Media"
+                    ? "bg-green-100 text-green-800"
+                    : "bg-orange-100 text-orange-800"
+                }">
+                ${artist.category}
+              </span>
+              
+              <!-- Description -->
+              <p class="text-gray-600 mb-4">${artist.description}</p>
+              
+              <!-- Education -->
+              ${educationSection}
+              
+              <!-- Specialty -->
+              <div class="mb-4">
+                <h4 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-1">Specialty</h4>
+                <p class="text-gray-700">${artist.specialty}</p>
+              </div>
+              
+              <!-- Achievements -->
+              <div class="mb-4">
+                <h4 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">Notable Achievements</h4>
+                <ul class="text-gray-700 text-sm custom-scrollbar max-h-32 overflow-y-auto pr-2">
+                  ${achievementsList}
+                </ul>
+                ${moreAchievements}
+              </div>
+              
+              <!-- Social Links -->
+              <div class="mt-auto pt-4">
+                <h4 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">Connect</h4>
+                <div class="flex space-x-2">
+                  ${socialLinks.join("")}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      }
+
+      // Render all artists initially
+      function renderArtists(filter = "all") {
+        artistContainer.innerHTML = "";
+        const filteredArtists =
+          filter === "all"
+            ? artists
+            : artists.filter((artist) => artist.category === filter);
+
+        filteredArtists.forEach((artist) => {
+          artistContainer.innerHTML += generateArtistCard(artist);
+        });
+      }
+
+      // Initialize
+      renderArtists();
+
+      // Add filter functionality
+      filterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          // Update active button
+          filterButtons.forEach((btn) => {
+            btn.classList.remove("bg-blue-600", "text-white");
+            btn.classList.add("bg-white", "text-gray-700");
+          });
+          button.classList.add("bg-blue-600", "text-white");
+          button.classList.remove("bg-white", "text-gray-700");
+
+          // Filter artists
+          const category = button.dataset.category;
+          renderArtists(category);
+        });
+      });
+
+      // Set first button as active initially
+      filterButtons[0].classList.add("bg-blue-600", "text-white");
+      filterButtons[0].classList.remove("bg-white", "text-gray-700");
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
