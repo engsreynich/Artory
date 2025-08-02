@@ -3,12 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact Form & Products</title>
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
-      rel="stylesheet"
+    <title>Artory | Cambodian Artwork Selling</title>
+    <!--SEO-->
+    <meta
+      name="description"
+      content="Artory is a platform for buying and selling Cambodian artwork. Discover unique pieces from talented artists."
+    />
+    <meta
+      name="keywords"
+      content="Cambodian artwork, buy art, sell art, Cambodian artists, art marketplace, unique art pieces"
+    />
+    <meta name="author" content="Artory Team" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="Artory | Cambodian Artwork Selling" />
+    <meta
+      property="og:description"
+      content="Artory is a platform for buying and selling Cambodian artwork. Discover unique pieces from talented artists."
     />
     <!--Stylesheet-->
+    <link rel="icon" href="/image/sell/1.jpg" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
@@ -27,6 +40,29 @@
       body {
         background-color: #f8f9fa;
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+      .navbar-shadow {
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+          0 1px 2px 0 rgba(0, 0, 0, 0.06);
+      }
+
+      .search-focus:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.1);
+      }
+
+      .nav-link:hover {
+        color: #8b5cf6;
+        transition: color 0.2s ease;
+      }
+
+      .mobile-menu {
+        transform: translateY(-100%);
+        transition: transform 0.3s ease;
+      }
+
+      .mobile-menu.active {
+        transform: translateY(0);
       }
       .form-container,
       .products-container {
@@ -722,7 +758,6 @@
         <img class="modal-content" id="modalImage" />
       </div>
     </main>
-
     <!-- Footer -->
     <footer class="mt-5 pt-5 pb-3 w-100">
       <div class="container">
@@ -742,9 +777,9 @@
             <h5>Visit Us</h5>
             <p>Artory Gallery</p>
             <p>Phnom Penh, Cambodia</p>
-            <p>Open: Mon - Fri / 9 AM - 5 PM</p>
+            <p>Open: Mon - Fri / 8 AM - 5 PM</p>
             <p>Email: info@artory.com</p>
-            <p>Phone: +855 XXX XXX XXX</p>
+            <p>Phone: +855 123 456 789</p>
           </div>
 
           <!-- Social Media -->
@@ -773,294 +808,7 @@
         </div>
       </div>
     </footer>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const form = document.getElementById("contactForm");
-        const artUpload = document.getElementById("artUpload");
-        const artFile = document.getElementById("artFile");
-        const fileInfo = document.getElementById("fileInfo");
-        const fileName = document.getElementById("fileName");
-        const successMessage = document.getElementById("successMessage");
-        const errorMessage = document.getElementById("errorMessage");
-        let uploadedFiles = [];
 
-        // File upload handling
-        artUpload.addEventListener("click", () => artFile.click());
-        artFile.addEventListener("change", updateFileNames);
-
-        function updateFileNames() {
-          const files = artFile.files;
-          uploadedFiles = Array.from(files);
-          if (files.length > 0) {
-            let names = [];
-            for (let i = 0; i < files.length; i++) names.push(files[i].name);
-            fileName.textContent = names.join(", ");
-            fileInfo.style.display = "block";
-
-            // Create preview for images
-            previewFiles(files);
-          }
-        }
-
-        function previewFiles(files) {
-          // Clear previous previews
-          const existingPreviews = document.querySelectorAll(".file-preview");
-          existingPreviews.forEach((preview) => preview.remove());
-
-          Array.from(files).forEach((file, index) => {
-            if (file.type.startsWith("image/")) {
-              const reader = new FileReader();
-              reader.onload = function (e) {
-                const preview = document.createElement("div");
-                preview.className = "file-preview";
-                preview.innerHTML = `
-                  <img src="${e.target.result}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px; margin: 5px;" onclick="openModal('${e.target.result}')">
-                `;
-                fileInfo.appendChild(preview);
-              };
-              reader.readAsDataURL(file);
-            }
-          });
-        }
-
-        function formatFileSize(bytes) {
-          if (bytes === 0) return "0 Bytes";
-          const k = 1024;
-          const sizes = ["Bytes", "KB", "MB", "GB"];
-          const i = Math.floor(Math.log(bytes) / Math.log(k));
-          return (
-            parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i]
-          );
-        }
-
-        function generateSubmissionId() {
-          const timestamp = Date.now();
-          const random = Math.floor(Math.random() * 1000);
-          return `SUB-${timestamp}-${random}`;
-        }
-
-        // Drag and drop
-        artUpload.addEventListener("dragover", (e) => {
-          e.preventDefault();
-          artUpload.classList.add("dragover");
-        });
-        artUpload.addEventListener("dragleave", (e) => {
-          e.preventDefault();
-          artUpload.classList.remove("dragover");
-        });
-        artUpload.addEventListener("drop", (e) => {
-          e.preventDefault();
-          artUpload.classList.remove("dragover");
-          artFile.files = e.dataTransfer.files;
-          updateFileNames();
-        });
-
-        form.addEventListener("submit", function (e) {
-          e.preventDefault();
-          successMessage.style.display = "none";
-          errorMessage.style.display = "none";
-
-          const name = document.getElementById("name").value.trim();
-          const email = document.getElementById("email").value.trim();
-          const phone = document.getElementById("phone").value.trim();
-          const location = document.getElementById("location").value;
-          const price = document.getElementById("price").value.trim();
-          const category = document.getElementById("category").value;
-          const description = document
-            .getElementById("description")
-            .value.trim();
-
-          if (!name || !email || !location || !price) {
-            errorMessage.textContent = "Please fill in all required fields.";
-            errorMessage.style.display = "block";
-            return;
-          }
-
-          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          if (!emailRegex.test(email)) {
-            errorMessage.textContent = "Please enter a valid email address.";
-            errorMessage.style.display = "block";
-            return;
-          }
-
-          const submitBtn = document.querySelector(".btn-submit");
-          submitBtn.disabled = true;
-          submitBtn.textContent = "Processing Submission...";
-
-          setTimeout(function () {
-            // Hide the form and show success message
-            form.style.display = "none";
-            successMessage.style.display = "block";
-
-            // Generate submission ID
-            const submissionId = generateSubmissionId();
-            document.getElementById("submissionId").textContent = submissionId;
-
-            // Populate the detailed summary
-            document.getElementById("summaryName").textContent = name;
-            document.getElementById("summaryEmail").textContent = email;
-            document.getElementById("summaryPhone").textContent =
-              phone || "Not provided";
-            document.getElementById("summaryLocation").textContent = location;
-            document.getElementById("summaryPrice").textContent =
-              parseFloat(price).toFixed(2);
-            document.getElementById("summaryCategory").textContent =
-              category || "Not specified";
-            document.getElementById("summaryDescription").textContent =
-              description || "No description provided";
-
-            // File details and image gallery
-            const fileDetailsDiv = document.getElementById("fileDetails");
-            const summaryFilesDiv = document.getElementById("summaryFiles");
-            const imageGallery = document.getElementById("imageGallery");
-
-            if (uploadedFiles.length > 0) {
-              summaryFilesDiv.textContent = `${uploadedFiles.length} file(s) uploaded`;
-              let totalSize = 0;
-              let fileDetailsHTML = "";
-              let imageGalleryHTML = "";
-
-              uploadedFiles.forEach((file, index) => {
-                totalSize += file.size;
-
-                // Create file list item
-                const fileIcon = getFileIcon(file.type);
-                fileDetailsHTML += `
-                  <div class="file-item">
-                    <span>${fileIcon} ${file.name}</span>
-                    <span class="file-size">${formatFileSize(file.size)}</span>
-                  </div>
-                `;
-
-                // Create image preview or file icon
-                if (file.type.startsWith("image/")) {
-                  const reader = new FileReader();
-                  reader.onload = function (e) {
-                    const imagePreview = document.createElement("div");
-                    imagePreview.className = "image-preview";
-                    imagePreview.innerHTML = `
-                      <img src="${e.target.result}" alt="${file.name}" onclick="openModal('${e.target.result}')">
-                      <div class="image-name">${file.name}</div>
-                    `;
-                    imageGallery.appendChild(imagePreview);
-                  };
-                  reader.readAsDataURL(file);
-                } else {
-                  // For non-image files, show an icon
-                  const filePreview = document.createElement("div");
-                  filePreview.className = "image-preview";
-                  filePreview.innerHTML = `
-                    <div class="non-image-file">
-                      <div class="file-icon">${getFileIcon(file.type)}</div>
-                      <div style="font-size: 12px; opacity: 0.8;">${getFileType(
-                        file.type
-                      )}</div>
-                    </div>
-                    <div class="image-name">${file.name}</div>
-                  `;
-                  imageGallery.appendChild(filePreview);
-                }
-              });
-
-              fileDetailsDiv.innerHTML = fileDetailsHTML;
-              fileDetailsDiv.style.display = "block";
-              document.getElementById("totalSize").textContent =
-                formatFileSize(totalSize);
-            } else {
-              summaryFilesDiv.textContent = "No files uploaded";
-              fileDetailsDiv.style.display = "none";
-              imageGallery.innerHTML = "";
-              document.getElementById("totalSize").textContent = "0 KB";
-            }
-
-            // Stats
-            document.getElementById("totalFiles").textContent =
-              uploadedFiles.length;
-
-            // Count completed fields
-            const fieldsCompleted =
-              [name, email, location, price].filter(
-                (field) => field && field.length > 0
-              ).length +
-              (phone ? 1 : 0) +
-              (category ? 1 : 0) +
-              (description ? 1 : 0) +
-              (uploadedFiles.length > 0 ? 1 : 0);
-            document.getElementById(
-              "fieldsCompleted"
-            ).textContent = `${fieldsCompleted}/8`;
-
-            document.getElementById("submissionTime").textContent =
-              new Date().toLocaleString();
-            document.getElementById("submissionSummary").style.display =
-              "block";
-
-            // Animate progress bar
-            setTimeout(() => {
-              document.getElementById("progressFill").style.width = "100%";
-            }, 100);
-
-            submitBtn.disabled = false;
-            submitBtn.textContent = "Submit";
-
-            // Scroll to summary
-            document
-              .getElementById("submissionSummary")
-              .scrollIntoView({ behavior: "smooth" });
-          }, 1500);
-        });
-      });
-
-      // Helper functions for file handling
-      function getFileIcon(fileType) {
-        if (fileType.startsWith("image/")) return "🖼️";
-        if (fileType.includes("pdf")) return "📄";
-        if (fileType.includes("doc")) return "📝";
-        if (fileType.includes("excel") || fileType.includes("sheet"))
-          return "📊";
-        return "📎";
-      }
-
-      function getFileType(fileType) {
-        if (fileType.startsWith("image/")) return "Image";
-        if (fileType.includes("pdf")) return "PDF";
-        if (fileType.includes("doc")) return "Document";
-        if (fileType.includes("excel") || fileType.includes("sheet"))
-          return "Spreadsheet";
-        return "File";
-      }
-
-      // Modal functions
-      function openModal(imageSrc) {
-        const modal = document.getElementById("imageModal");
-        const modalImg = document.getElementById("modalImage");
-        modal.style.display = "block";
-        modalImg.src = imageSrc;
-      }
-
-      function closeModal() {
-        document.getElementById("imageModal").style.display = "none";
-      }
-
-      // Close modal when clicking outside the image
-      window.onclick = function (event) {
-        const modal = document.getElementById("imageModal");
-        if (event.target == modal) {
-          modal.style.display = "none";
-        }
-      };
-
-      // Function to reset form for new submission
-      function resetForm() {
-        document.getElementById("contactForm").reset();
-        document.getElementById("contactForm").style.display = "block";
-        document.getElementById("submissionSummary").style.display = "none";
-        document.getElementById("successMessage").style.display = "none";
-        document.getElementById("fileInfo").style.display = "none";
-        document.getElementById("progressFill").style.width = "0%";
-        document.getElementById("imageGallery").innerHTML = "";
-        document.querySelector("h2").scrollIntoView({ behavior: "smooth" });
-      }
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
