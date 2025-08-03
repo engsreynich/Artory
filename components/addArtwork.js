@@ -32,7 +32,7 @@ const arts = [
 	},
 	{
 		title: "My Dear Apsara",
-		imgSrc: "/image/artwork/con1.jpg",
+		imgSrc: "image/artwork/Con1.jpg",
 		alt: "My Dear Apsara",
 		description:
 			"Experience contemporary Cambodian art in a creative space blending tradition and innovation.",
@@ -42,7 +42,7 @@ const arts = [
 	},
 	{
 		title: "Tonlesap",
-		imgSrc: "/image/artwork/con2(Tonle).jpg",
+		imgSrc: "/image/artwork/Con2(Tonle).jpg",
 		alt: "Tonlesap",
 		description:
 			"A unique artwork highlighting Cambodia’s post-Angkorian art movements and cultural expressions.",
