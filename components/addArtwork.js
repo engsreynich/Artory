@@ -32,7 +32,7 @@ const arts = [
 	},
 	{
 		title: "My Dear Apsara",
-		imgSrc: "image/artwork/Con1.jpg",
+		imgSrc: "/image/artwork/Con1.jpg",
 		alt: "My Dear Apsara",
 		description:
 			"Experience contemporary Cambodian art in a creative space blending tradition and innovation.",
